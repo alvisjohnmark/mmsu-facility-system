@@ -1,0 +1,17 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+
+/* Import default theme */
+@import '@splidejs/vue-splide/css';
+
+/* Or choose other themes */
+@import '@splidejs/vue-splide/css/skyblue';
+@import '@splidejs/vue-splide/css/sea-green';
+
+/* Or only import core styles */
+@import '@splidejs/vue-splide/css/core';
+
+/* Other Tailwind and custom styles */

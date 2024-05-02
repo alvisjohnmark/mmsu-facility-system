@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[764],{764:(n,u,e)=>{e.r(u),e.d(u,{default:()=>i});var t=e(821),a=e(201);const i={__name:"admin_app",setup:function(n){return function(n,u){return(0,t.wg)(),(0,t.iD)("div",null,[(0,t._)("main",null,[(0,t.Wm)((0,t.SU)(a.MA))])])}}}}}]);
