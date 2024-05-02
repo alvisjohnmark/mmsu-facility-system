@@ -22,15 +22,15 @@
         <ul class="list-style-none ml-auto mr-auto flex flex-col pl-0 lg:flex-row" data-te-navbar-nav-ref>
           <li class="mb-4 lg:mb-0 lg:pr-10" data-te-nav-item-ref>
             <!-- Facilities link -->
-            <router-link to="/facilities" class="text-neutral-500 transition duration-200 hover:text-neutral-700 font-bold hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400">Facilities</router-link>
+            <router-link to="/facilities" class="text-white">Facilities</router-link>
           </li>
           <li class="mb-4 lg:mb-0 lg:pr-10" data-te-nav-item-ref>
             <!-- About link -->
-            <router-link to="/about" class="text-neutral-500 transition duration-200 hover:text-neutral-700 font-bold hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400">About</router-link>
+            <router-link to="/about" class="text-white">About</router-link>
           </li>
           <li class="mb-4 lg:mb-0 lg:pr-10" data-te-nav-item-ref>
             <!-- Contact link -->
-            <router-link to="/contact" class="text-neutral-500 transition duration-200 hover:text-neutral-700 font-bold hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400">Contact</router-link>
+            <router-link to="/contact" class="text-white">Contact</router-link>
           </li>
         </ul>
       </div>

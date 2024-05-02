@@ -14,7 +14,7 @@
         <div class="absolute inset-0 flex items-center justify-center bg-opacity-70 bg-white">
           <div class="text-center text-black p-4 md:p-8">
             <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold">
-              Welcome to MMSU Facility Reservationassasa
+              Welcome to MMSU Facility Reservationassasasdsadsada Test
             </h1>
             <p class="text-base md:text-lg lg:text-xl mt-2">
               Your gateway to hassle-free facility booking and event planning.
@@ -26,7 +26,7 @@
               to="/facilities"
               class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 text-base md:text-lg"
             >
-              Make New Reservation awdddddddddddddddd
+              Make New Reservation Test
             </router-link>
           </div>
         </div>
