@@ -19,14 +19,14 @@
             <p class="text-base md:text-lg lg:text-xl mt-2">
               Your gateway to hassle-free facility booking and event planning.
               Explore our diverse range of facilities, check rates, and reserve
-              with ease. Let's make your events unforgettable!
+              with ease. Let's make your events unforgettable!assaaa asfff        fasfafwfqwqwfqw qwfqw
             </p>
             <br>
             <router-link
               to="/facilities"
               class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 text-base md:text-lg"
             >
-              Make New Reservation
+              Make New Reservation awdddddddddddddddd
             </router-link>
           </div>
         </div>
