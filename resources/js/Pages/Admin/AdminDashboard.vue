@@ -149,7 +149,7 @@ export default {
 data() {
   return {
 
-    isSidePanelOpen: true,
+    isSidePanelOpen: true,  
     showModal: false,
     reservationCount: 0,
     facilityCount: 0,

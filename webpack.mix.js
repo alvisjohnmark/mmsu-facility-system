@@ -5,3 +5,14 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require('tailwindcss'),
     ]);
+
+// mix.webpackConfig(webpack => {
+//     return {
+//         plugins: [
+//             new webpack.DefinePlugin({
+//                 __VUE_OPTIONS_API__: false,
+//                  __VUE_PROD_DEVTOOLS__: false,
+//             }),
+//         ],
+//     }
+// })

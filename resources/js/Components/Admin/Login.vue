@@ -21,7 +21,7 @@
                 style="width: 50px; height: 50px;"
               ></lord-icon>
               <p>{{ error }}</p>
-            </div>
+            </div>  
           </div>
           <div class="flex items-center mb-4" style="margin-top: 2rem;">
             <input type="checkbox" id="remember" name="remember" class="mr-2">
@@ -71,8 +71,8 @@ export default {
         username: this.username,
         password: this.password,
       };
-
-      axios.post('/login', requestData).then(({ data }) => {
+      
+      axios.post(`/login`, requestData).then(({ data }) => {
         if (data === 1) {
           this.$router.push('/admin/admindashboard');
           window.location.reload();

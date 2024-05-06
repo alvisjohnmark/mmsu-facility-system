@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -13,8 +14,8 @@ class AuthController extends Controller
     {
         $credentials = $request->only('username', 'password');
 
-        if(User::where('username', $credentials['username'])->exists()){
-            $user = User::where('username', $credentials['username'])->first();
+        if(Admin::where('username', $credentials['username'])->exists()){
+            $user = Admin::where('username', $credentials['username'])->first();
             if(Hash::check($credentials['password'], $user->password) && $user->username===$credentials['username']){
                 Auth::login($user);
                 return 1;

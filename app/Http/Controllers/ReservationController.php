@@ -5,7 +5,7 @@ use App\Models\Reservation;
 use App\Models\ReservationService;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -93,8 +93,8 @@ class ReservationController extends Controller
 
         // Retrieve reservations
         $reservationsData = Reservation::select('*', DB::raw("reservations.id as reservation_id"))
-            ->join('facility', 'reservations.facility_id', '=', 'facility.id')
-            ->join('clients', 'reservations.client_id', '=', 'clients.id')
+            ->join('facility', 'freservations.facility_id', '=', 'facility.id')
+            ->join('clients', 'freservations.client_id', '=', 'clients.id')
             ->where('admin_id', $adminId)
             ->get();
 
@@ -130,7 +130,7 @@ class ReservationController extends Controller
             {
                 $adminId = Auth::id();
 
-                $reservationCount = Reservation::join('facility', 'reservations.facility_id', '=', 'facility.id')
+                $reservationCount = Reservation::join('facility', 'freservations.facility_id', '=', 'facility.id')
                 ->where('facility.admin_id', $adminId)
                 ->count();
 
@@ -160,9 +160,9 @@ class ReservationController extends Controller
         {
             $adminId = Auth::id();
 
-            $approvedReservations = Reservation::select('*', DB::raw("reservations.id as reservation_id"))
-                ->join('facility', 'reservations.facility_id', '=', 'facility.id')
-                ->join('clients', 'reservations.client_id', '=', 'clients.id')
+            $approvedReservations = Reservation::select('*', DB::raw("freservations.id as reservation_id"))
+                ->join('facility', 'freservations.facility_id', '=', 'facility.id')
+                ->join('clients', 'freservations.client_id', '=', 'clients.id')
                 ->where('admin_id', $adminId)
                 ->where('status', 1) // Fetch only approved reservations
                 ->get();

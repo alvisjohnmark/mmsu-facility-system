@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\FacilityPrice;
 use Illuminate\Http\Request;
 
 class PriceController extends Controller

@@ -87,7 +87,7 @@ Route::get('/get-services', [ServicesController::class, 'getServices']);
 Route::delete('/delete-services/{id}', [ServicesController::class, 'deleteService']);
 Route::put('/update-service/{id}', [ServicesController::class, 'editService']);
 Route::get('/get-service/{id}', [ServicesController::class, 'getServiceById']);
-
+    
 
 
 Route::get('/getreservationcount', [ReservationController::class, 'getAdminReservationCount']);

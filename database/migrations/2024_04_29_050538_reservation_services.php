@@ -15,7 +15,7 @@ class ReservationServices extends Migration
     {
         Schema::create('reservation_services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reservation_id')->constrained('f_reservations')->cascadeOnDelete();
+            $table->foreignId('reservation_id')->constrained('freservations')->cascadeOnDelete();
             $table->foreignId('service_id')->constrained('services')->cascadeOnDelete();
             $table->integer('quantity');
             $table->integer('total_prices');    

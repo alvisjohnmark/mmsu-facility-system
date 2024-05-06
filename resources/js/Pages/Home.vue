@@ -14,19 +14,19 @@
         <div class="absolute inset-0 flex items-center justify-center bg-opacity-70 bg-white">
           <div class="text-center text-black p-4 md:p-8">
             <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold">
-              Welcome to MMSU Facility Reservationassasasdsadsada Test
+              Welcome to MMSU Facility Reservation
             </h1>
             <p class="text-base md:text-lg lg:text-xl mt-2">
               Your gateway to hassle-free facility booking and event planning.
               Explore our diverse range of facilities, check rates, and reserve
-              with ease. Let's make your events unforgettable!assaaa asfff        fasfafwfqwqwfqw qwfqw
+              with ease. Let's make your events unforgettable
             </p>
             <br>
             <router-link
               to="/facilities"
               class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 text-base md:text-lg"
             >
-              Make New Reservation Test
+              Make New Reservation
             </router-link>
           </div>
         </div>
@@ -39,7 +39,7 @@
         <h4 class="text-base md:text-lg lg:text-xl">
           Lorem ipsum dolor sit amet consectetur adipisicing elit...
         </h4>
-        <h1 class="text-lg md:text-xl lg:text-2xl">
+        <h1 class="text-lg md:text-xl lg:text-2xl"> 
           THIS IS FOR THE RANDOMIZED IMAGE CAROUSEL
         </h1>
       </div>
@@ -50,7 +50,7 @@
           Lorem ipsum dolor sit amet consectetur adipisicing elit...
         </p>
         <p class="text-base md:text-lg lg:text-xl">
-          Insert text here
+          Test
         </p>
         <!-- Add more responsive text here -->
       </div>

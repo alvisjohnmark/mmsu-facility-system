@@ -13,7 +13,8 @@
 </head>
 <body>
     <div id="app">
-    <h1 class="text-xl">Twst</h1>
+    <h1 class="text-xl">Test</h1>
+
         @if(auth()->check())
             <AdminDashboard />
         @else
