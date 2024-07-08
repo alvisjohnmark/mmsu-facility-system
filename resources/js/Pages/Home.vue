@@ -19,7 +19,7 @@
             <p class="text-base md:text-lg lg:text-xl mt-2">
               Your gateway to hassle-free facility booking and event planning.
               Explore our diverse range of facilities, check rates, and reserve
-              with ease. Let's make your events unforgettable
+              with ease. Let's make your events unforgettableaaaaaa
             </p>
             <br>
             <router-link

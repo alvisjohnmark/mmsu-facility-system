@@ -22,7 +22,7 @@ class FacilitiesController extends Controller
                 $currentMonth = date('n');
 
                 // Load facilities with prices for the current month
-                $facilities     = Facility::with(['prices' => function ($query) use ($currentMonth) {
+                $facilities = Facility::with(['prices' => function ($query) use ($currentMonth) {
                     $query->where(function ($q) use ($currentMonth) {
                         $q->where('monthFrom', '<=', $currentMonth)  // Check if the price is valid for the current month
                             ->where(function ($q) use ($currentMonth) {
@@ -31,7 +31,7 @@ class FacilitiesController extends Controller
                             });
                     });
                 }])
-                ->get();
+                ->get();    
 
             // Transform tags string to array for each facility
                 foreach ($facilities as &$facility) {

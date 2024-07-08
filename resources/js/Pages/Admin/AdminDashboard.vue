@@ -42,7 +42,7 @@
                   </span>
               </router-link> 
               <router-link to="/admin/login" class="block px-4 py-2 text-gray-800 router-link" active-class="active-link">
-                <button @click="logout" class="flex items-center">
+                <button @click="admin.logout()" class="flex items-center">
                   <lord-icon src="https://cdn.lordicon.com/whtfgdfm.json" trigger="hover" colors="primary:#ffffff" class="w-7 h-7 mr-2" />
                   Logout
                 </button>
@@ -59,7 +59,7 @@
                           Overview
                         </span>
                         <span class="text-white text-xl mr-4 flex items-center">
-                          Hello, {{ adminName }}
+                          Hello, {{ admin.adminName }}
                         </span>
                   </div>
               </div> <!--Sub Nav End-->
@@ -74,7 +74,7 @@
                           </router-link>
                       </span>
                       <div class="mt-5">
-                        <span id="countReservations" class="font-bold text-4xl text-white">{{ reservationCount }}</span>
+                        <span id="countReservations" class="font-bold text-4xl text-white">{{ admin.reservationCount }}</span>
                       </div>
                   </div><!--Box 1 End-->
 
@@ -88,7 +88,7 @@
                       </span>
 
                       <div class="mt-5">
-                        <span id="countFacilities" class="font-bold text-4xl text-white">{{ facilityCount }}</span>
+                        <span id="countFacilities" class="font-bold text-4xl text-white">{{ admin.facilityCount }}</span>
                       </div>
 
                   </div><!--Box 2 End-->
@@ -142,97 +142,27 @@
   </div>
 </template>
 
-<script>
-import axios from 'axios';
+<script setup>
+    import { adminDashboard } from './PagesAdminStore/adminDashboard.js';
+    import { onMounted } from 'vue'
+    const admin = adminDashboard();
 
-export default {
-data() {
-  return {
+    onMounted(() => {
+    admin.fetchReservationCount();
+    admin.fetchFacilityCount();
+    admin.getAdminName(); 
 
-    isSidePanelOpen: true,  
-    showModal: false,
-    reservationCount: 0,
-    facilityCount: 0,
-    adminName: ''
-  };
-},
-methods: {
-  
-  fetchReservationCount() {
-      axios.get('/getreservationcount') // Update with your actual endpoint
-        .then(response => {
-          this.reservationCount = response.data.reservation_count;
-        })
-        .catch(error => {
-          console.error('Error fetching reservation count:', error);
-        });
-    },
-    fetchFacilityCount() {
-      axios.get('/getfacilitiescount')
-        .then(response => {
-          this.facilityCount = response.data.facilityCount; // Update facilityCount with fetched count
-        })
-        .catch(error => {
-          console.error('Error fetching facility count', error);
-        });
-    },
+    const countElementReservations = document.getElementById('countReservations');
+    const countElementFacilities = document.getElementById('countFacilities');
+    const countElementPayments = document.getElementById('countPayments');
 
-    getAdminName() {
-      axios.get('/adminname')
-        .then(response => {
-          this.adminName = response.data.adminName; // Update adminName with fetched name
-        })
-        .catch(error => {
-          console.error('Error fetching admin name', error);
-        });
-    },
+    admin.animateCount(countElementReservations, 100, 0, 500);
+    admin.animateCount(countElementFacilities, 50, 0, 500);
+    admin.animateCount(countElementPayments, 100, 0, 500);
 
+    admin.checkUser();
+    });
 
-  toggleSidePanel() {
-    this.isSidePanelOpen = !this.isSidePanelOpen;
-  },
-  openModal() {
-    this.showModal = true;
-  },
-  closeModal() {
-    this.showModal = false;
-  },
-  animateCount(element, start, end, duration) {
-    
-  },
-
-  logout() {
-        axios.post('/logout').then(({data})=>{
-          this.checkUser();
-        })
-      },
-
-      checkUser(){
-        axios.post('/check-user').then(({data})=>{
-          if(!data){
-            this.$router.push('/admin/login')
-          }
-        })
-      }
-},
-mounted() {
-
-  this.fetchReservationCount();
-  this.fetchFacilityCount();
-  this.getAdminName(); 
-
-  const countElementReservations = document.getElementById('countReservations');
-  const countElementFacilities = document.getElementById('countFacilities');
-  const countElementPayments = document.getElementById('countPayments');
-
-  this.animateCount(countElementReservations, 100, 0, 500);
-  this.animateCount(countElementFacilities, 50, 0, 500);
-  this.animateCount(countElementPayments, 100, 0, 500);
-
-  this.checkUser();
-},
-// ... rest of your code
-};
 </script>
 
 <style scoped>

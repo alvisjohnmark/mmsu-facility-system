@@ -1,522 +1,475 @@
 <template lang="">
-  <div class="flex flex-row  w-full"><!--Main-->
-    <aside class="sticky top-0 shadow-lg shadow-gray-500 w-80 h-screen"><!--Side Nav-->
-          
-          <div class="flex items-center justify-center h-14 mt-20">
-         <img src="\src\mmsu-logo.png" alt="Logo" class="w-36" />
-      </div>
-          <div class="grid grid-cols-1 mt-20">
-            <router-link to="/admin/admindashboard" class="block px-4 py-2 text-gray-800 router-link" trigger="hover" active-class="active-link">
-                  <span class="flex items-center">
-                      <lord-icon src="https://cdn.lordicon.com/wmwqvixz.json" trigger="morph" state="morph-home-3" colors="primary:#ffffff" class="w-7 h-7 mr-2" />
-                      Dashboard
-                  </span>
-              </router-link>
-              <router-link to="/admin/admincalendar" class="block px-4 py-2 text-gray-800 router-link" active-class="active-link">
-                  <span class="flex items-center">
-                      <lord-icon src="https://cdn.lordicon.com/wmlleaaf.json" trigger="hover" colors="primary:#ffffff" class="w-7 h-7 mr-2" />
-                      Calendar
-                  </span>
-              </router-link> 
+    <div class="flex flex-row w-full">
+        <!--Main-->
+        <aside class="sticky top-0 shadow-lg shadow-gray-500 w-80 h-screen">
+            <!--Side Nav-->
 
-           <!--Updated by jhn-->
-           <router-link
-                to="/admin/adminreservation"
-                class="block px-4 py-2 text-gray-800 router-link"
-                active-class="active-link"
-              >
-                <span class="flex items-center">
-                  <lord-icon
-                    src="https://cdn.lordicon.com/omiqopzf.json"
-                    trigger="hover"
-                    colors="primary:#ffffff"
-                    class="w-7 h-7 mr-2"
-                  />
-                  Reservation
-                  <lord-icon
-                    @click="toggleExpand"
-                    v-if="!expanded"
-                    src="https://cdn.lordicon.com/xcrjfuzb.json"
-                    trigger="hover"
-                    state="hover-arrow-down-2"
-                    colors="primary:#ffffff"
-                    class="w-5 h-5 ml-20"
-                  />
-                  <lord-icon
-                    @click="toggleExpand"
-                    v-if="expanded"
-                    src="https://cdn.lordicon.com/ternnbni.json"
-                    trigger="hover"
-                    state="hover-arrow-up-2"
-                    colors="primary:#ffffff"
-                    class="w-5 h-5 ml-20"
-                  />
-                </span>
-              </router-link>
-
-              <router-link
-                v-if="expanded"
-                to="/admin/approved"
-                class="px-4 py-2 text-gray-800 router-link"
-                active-class="active-link"
-              >
-              <span class="flex items-center ml-8">
-                <lord-icon src="https://cdn.lordicon.com/lomfljuq.json" trigger="morph"  colors="primary:#ffffff" class="w-7 h-7 mr-2" /> 
-                 Approved Request
-              </span>
-              </router-link>
-
-              <router-link to="/admin/adminfacilities" class="block px-4 py-2 text-gray-800 router-link" active-class="active-link">
-                  <span class="flex items-center">
-                    <lord-icon src="https://cdn.lordicon.com/ipnwkgdy.json"  trigger="hover" colors="primary:#ffffff" class="w-7 h-7 mr-2" />
-                      Facilities 
-                  </span>
-              </router-link>
-              <router-link to="/admin/adminservices" class="block px-4 py-2 text-gray-800 router-link" active-class="active-link">
-                  <span class="flex items-center">
-                      <lord-icon src="https://cdn.lordicon.com/iazmohzf.json" trigger="hover" colors="primary:#ffffff" class="w-7 h-7 mr-2" />
-                      Services 
-                  </span>
-              </router-link>            
-              <router-link to="/admin/adminreport" class="block px-4 py-2 text-gray-800 router-link" active-class="active-link">
-                  <span class="flex items-center">
-                      <lord-icon src="https://cdn.lordicon.com/yrbmguoo.json" trigger="hover" colors="primary:#ffffff" class="w-7 h-7 mr-2" />
-                      Report 
-                  </span>
-              </router-link> 
-              <router-link to="/admin/login" class="block px-4 py-2 text-gray-800 router-link" active-class="active-link">
-                <span @click="logout" class="flex items-center">
-                  <lord-icon src="https://cdn.lordicon.com/whtfgdfm.json" trigger="hover" colors="primary:#ffffff" class="w-7 h-7 mr-2" />
-                  Logout
-                </span>
-              </router-link>
-          </div>
-      </aside><!--Side Nav End-->
-  
-      <div class="bg-gray-100 shadow-xl h-screen w-full" style="overflow: auto"><!--Content-->
-          <div class="grid grid-cols-1 flex flex-row border-b-4 border-yellow-400"><!--Sub Nav-->
-              <div class="shadow-md h-20 flex justify-start" style="background-color: #0C4B05">
-                  <span class="flex items-center text-white text-xl font-semibold ml-4" style="font-family: Advantage">
-                    <lord-icon src="https://cdn.lordicon.com/omiqopzf.json" trigger="hover" colors="primary:#ffffff" class="w-10 h-10 mr-2" />
-                      Reservation
-                  </span>
-              </div>
-          </div><!-- Sub Nav End --> 
-
-          <div class="grid grid-cols-1 flex flex-row"><!--Sub Nav 1-->
-              <div class="bg-shadow-gray-100 shadow-md h-12 flex justify-start items-center" style="background-color: #c0c0c0">
-                  <span class="flex items-center text-black text-xl italic font-semibold" style="font-family: Advantage">
-                      <img src="\src\mmsu-logo.png" alt="Logo" class="w-12 h-10 mr-2" />
-                      Facility Reservation Request
-                  </span>
-              </div>
-          </div> <!--Sub Nav End 1-->
-
-
-          <div class="flex items-center justify-between mb-2 mt-2 ml-2">
-            <div>
-              <label for="statusFilter">Filter by Status:</label>
-              <select v-model="selectedStatus" @change="filterReservations">
-                <option value="all">All</option>
-                <option value="0">Pending</option>
-                <option value="1">Approved</option>
-                <option value="2">Finished</option>
-                <option value="3">Declined</option>
-              </select>
+            <div class="flex items-center justify-center h-14 mt-20">
+                <img src="\src\mmsu-logo.png" alt="Logo" class="w-36" />
             </div>
-          </div>
+            <div class="grid grid-cols-1 mt-20">
+                <router-link
+                    to="/admin/admindashboard"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    trigger="hover"
+                    active-class="active-link"
+                >
+                    <span class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wmwqvixz.json"
+                            trigger="morph"
+                            state="morph-home-3"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Dashboard
+                    </span>
+                </router-link>
+                <router-link
+                    to="/admin/admincalendar"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <span class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wmlleaaf.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Calendar
+                    </span>
+                </router-link>
 
+                <!--Updated by jhn-->
+                <router-link
+                    to="/admin/adminreservation"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <span class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/omiqopzf.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Reservation
+                        <lord-icon
+                            @click="toggleExpand"
+                            v-if="!expanded"
+                            src="https://cdn.lordicon.com/xcrjfuzb.json"
+                            trigger="hover"
+                            state="hover-arrow-down-2"
+                            colors="primary:#ffffff"
+                            class="w-5 h-5 ml-20"
+                        />
+                        <lord-icon
+                            @click="toggleExpand"
+                            v-if="expanded"
+                            src="https://cdn.lordicon.com/ternnbni.json"
+                            trigger="hover"
+                            state="hover-arrow-up-2"
+                            colors="primary:#ffffff"
+                            class="w-5 h-5 ml-20"
+                        />
+                    </span>
+                </router-link>
 
-          <div class="relative overflow-x-auto shadow-md sm:rounded-sm">
-              <table class="w-full text-sm text-left rtl:text-right text-black dark:text-black">
-                  <thead class="text-xs text-white uppercase bg-green-800 dark:text-white">
-                      <tr>
-                          <th scope="col" class="px-6 py-3">
-                              Facility
-                          </th>
-                          <th scope="col" class="px-6 py-3">
-                              Purpose
-                          </th>
-                          <th scope="col" class="px-6 py-3">
-                              Event Name
-                          </th>
-                          <th scope="col" class="px-6 py-3">
-                              Participants
-                          </th>
-                          <th scope="col" class="px-6 py-3">
-                              Date of Event
-                          </th>
-                          <th scope="col" class="px-6 py-3">
-                              Time
-                          </th>
-                          <th scope="col" class="px-6 py-3">
-                              Status
-                          </th>
-                          <th scope="col" class="px-6 py-3">
-                              Details
-                          </th>
-                          <th scope="col" class="px-6 py-3">
-                              Action
-                          </th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr class=" border-b border-green-800"  v-for="reservation in filteredReservations" :key="reservation.id">
-                          <th scope="row" class="px-6 py-4 font-medium text-black  dark:text-black">
-                             {{ reservation.reservation_details.facility_name }}
-                          </th>
-                          <td class="px-6 py-4">
-                             {{ reservation.reservation_details.event_name }}
-                          </td>
-                          <td class="px-6 py-4">
-                              {{ reservation.reservation_details.purpose }}
-                          </td>
-                          <td class="px-6 py-4">
-                              {{ reservation.reservation_details.participants }}
-                          </td>
-                          <td class="px-6 py-4">
-                              {{ reservation.reservation_details.eventDateFrom }} to {{ reservation.reservation_details.eventDateTo }}
-                          </td>
-                          <td class="px-6 py-4">
-                              {{ reservation.reservation_details.startTime }} to {{ reservation.reservation_details.endTime }}
-                          </td>
- <td class="px-6 py-4">
-  <div
-    :class="[
-      {
-        'bg-blue-200': reservation && reservation.reservation_details && reservation.reservation_details.Status === 0,
-        'bg-yellow-300': reservation && reservation.reservation_details && reservation.reservation_details.Status === 1,
-        'bg-red-300': reservation && reservation.reservation_details && (reservation.reservation_details.Status === 2 || reservation.reservation_details.Status === 3),
-      },
-      'hover:bg-white-200',
-      'text-black',
-      'font-semibold',
-      'py-2',
-      'px-4',
-      'rounded-md'
-    ]"
-  >
-    {{ getStatusText(reservation && reservation.reservation_details && reservation.reservation_details.Status) }}
-    {{ console.log('Status:', reservation && reservation.reservation_details && reservation.reservation_details.Status) }}
-  </div>
-</td>
-                          <td class="px-6 py-4">
-                            <button @click="openModal(reservation)" class="bg-green-800 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 ">View</button>
-                          </td>
-                          <td class="px-6 py-4">
-                            <button @click="approveReservation(reservation.reservation_details.reservation_id)" class="bg-green-800 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300">Approve</button>
-                            <button @click="confirmDecline(reservation.reservation_details.reservation_id)" class="bg-red-800 hover:bg-red-700 text-white mt-2 mb-2 font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300">Decline</button>
-                            <button @click="openRescheduleModal(reservation)" class="bg-yellow-500 hover:bg-yellow-400 text-white font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300">Reschedule</button>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div> 
-      </div><!--Content End-->
-      <div>
-          <reservationModal v-if="showModal" :reservation="selectedReservation" @close="closeModal"></reservationModal>
-          <div v-if="showRescheduleModal" class="modal">
-  <div class="modal-content reschedule-content">
-    <h2>Reschedule Reservation</h2>
-    <!-- Date Pickers and Time Inputs -->
-    <div class="reschedule-grid">
-      <!-- Start Date and End Date -->
-      <div class="reschedule-row">
-        <label for="startDatePicker">Start Date:</label>
-        <input v-model="modifiedReservation.reservation_details.eventDateFrom"
-          class="date-input"
-          placeholder="Start Date"
-          id="startDatePicker"
-          @focus="showStartDatePicker"
-        />
-        <label for="endDatePicker">End Date:</label>
-        <input
-          v-model="modifiedReservation.reservation_details.eventDateTo"
-          class="date-input"
-          placeholder="End Date"
-          id="endDatePicker"
-          @focus="showEndDatePicker"
-        />
-      </div>
-      <!-- Start Time and End Time -->
-      <div class="reschedule-row">
-        <label for="startTimeInput">Start Time:</label>
-        <input
-          type="time"
-          v-model="modifiedReservation.reservation_details.startTime"
-          @change="setTimeFormat"
-          required
-          id="startTimeInput"
-        />
-        <label for="endTimeInput">End Time:</label>
-        <input
-          type="time"
-          v-model="modifiedReservation.reservation_details.endTime"
-          @change="setTimeFormat"
-          required
-          id="endTimeInput"
-        />
-      </div>
-      <!-- Buttons -->
-      <div class="reschedule-row">
-        <div></div>
-        <div class="buttons">
-          <button @click="saveRescheduledReservation">Save Changes</button>
-          <button @click="showRescheduleModal = false">Cancel</button>
+                <router-link
+                    v-if="expanded"
+                    to="/admin/approved"
+                    class="px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <span class="flex items-center ml-8">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/lomfljuq.json"
+                            trigger="morph"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Approved Request
+                    </span>
+                </router-link>
+
+                <router-link
+                    to="/admin/adminfacilities"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <span class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/ipnwkgdy.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Facilities
+                    </span>
+                </router-link>
+                <router-link
+                    to="/admin/adminservices"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <span class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/iazmohzf.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Services
+                    </span>
+                </router-link>
+                <router-link
+                    to="/admin/adminreport"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <span class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/yrbmguoo.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Report
+                    </span>
+                </router-link>
+                <router-link
+                    to="/admin/login"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <span @click="logout" class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/whtfgdfm.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Logout
+                    </span>
+                </router-link>
+            </div>
+        </aside>
+        <!--Side Nav End-->
+
+        <div
+            class="bg-gray-100 shadow-xl h-screen w-full"
+            style="overflow: auto"
+        >
+            <!--Content-->
+            <div
+                class="grid grid-cols-1 flex flex-row border-b-4 border-yellow-400"
+            >
+                <!--Sub Nav-->
+                <div
+                    class="shadow-md h-20 flex justify-start"
+                    style="background-color: #0c4b05"
+                >
+                    <span
+                        class="flex items-center text-white text-xl font-semibold ml-4"
+                        style="font-family: Advantage"
+                    >
+                        <lord-icon
+                            src="https://cdn.lordicon.com/omiqopzf.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-10 h-10 mr-2"
+                        />
+                        Reservation
+                    </span>
+                </div>
+            </div>
+            <!-- Sub Nav End -->
+
+            <div class="grid grid-cols-1 flex flex-row">
+                <!--Sub Nav 1-->
+                <div
+                    class="bg-shadow-gray-100 shadow-md h-12 flex justify-start items-center"
+                    style="background-color: #c0c0c0"
+                >
+                    <span
+                        class="flex items-center text-black text-xl italic font-semibold"
+                        style="font-family: Advantage"
+                    >
+                        <img
+                            src="\src\mmsu-logo.png"
+                            alt="Logo"
+                            class="w-12 h-10 mr-2"
+                        />
+                        Facility Reservation Request
+                    </span>
+                </div>
+            </div>
+            <!--Sub Nav End 1-->
+
+            <div class="flex items-center justify-between mb-2 mt-2 ml-2">
+                <div>
+                    <label for="statusFilter">Filter by Status:</label>
+                    <select
+                        v-model="selectedStatus"
+                        @change="filterReservations"
+                    >
+                        <option value="all">All</option>
+                        <option value="0">Pending</option>
+                        <option value="1">Approved</option>
+                        <option value="2">Finished</option>
+                        <option value="3">Declined</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="relative overflow-x-auto shadow-md sm:rounded-sm">
+                <table
+                    class="w-full text-sm text-left rtl:text-right text-black dark:text-black"
+                >
+                    <thead
+                        class="text-xs text-white uppercase bg-green-800 dark:text-white"
+                    >
+                        <tr>
+                            <th scope="col" class="px-6 py-3">Facility</th>
+                            <th scope="col" class="px-6 py-3">Purpose</th>
+                            <th scope="col" class="px-6 py-3">Event Name</th>
+                            <th scope="col" class="px-6 py-3">Participants</th>
+                            <th scope="col" class="px-6 py-3">Date of Event</th>
+                            <th scope="col" class="px-6 py-3">Time</th>
+                            <th scope="col" class="px-6 py-3">Status</th>
+                            <th scope="col" class="px-6 py-3">Details</th>
+                            <th scope="col" class="px-6 py-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            class="border-b border-green-800"
+                            v-for="reservation in filteredReservations"
+                            :key="reservation.id"
+                        >
+                            <th
+                                scope="row"
+                                class="px-6 py-4 font-medium text-black dark:text-black"
+                            >
+                                {{
+                                    reservation.reservation_details
+                                        .facility_name
+                                }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ reservation.reservation_details.event_name }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ reservation.reservation_details.purpose }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{
+                                    reservation.reservation_details.participants
+                                }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{
+                                    reservation.reservation_details
+                                        .eventDateFrom
+                                }}
+                                to
+                                {{
+                                    reservation.reservation_details.eventDateTo
+                                }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ reservation.reservation_details.startTime }}
+                                to {{ reservation.reservation_details.endTime }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <div
+                                    :class="[
+                                        {
+                                            'bg-blue-200':
+                                                reservation &&
+                                                reservation.reservation_details &&
+                                                reservation.reservation_details
+                                                    .Status === 0,
+                                            'bg-yellow-300':
+                                                reservation &&
+                                                reservation.reservation_details &&
+                                                reservation.reservation_details
+                                                    .Status === 1,
+                                            'bg-red-300':
+                                                reservation &&
+                                                reservation.reservation_details &&
+                                                (reservation.reservation_details
+                                                    .Status === 2 ||
+                                                    reservation
+                                                        .reservation_details
+                                                        .Status === 3),
+                                        },
+                                        'hover:bg-white-200',
+                                        'text-black',
+                                        'font-semibold',
+                                        'py-2',
+                                        'px-4',
+                                        'rounded-md',
+                                    ]"
+                                >
+                                    {{
+                                        getStatusText(
+                                            reservation &&
+                                                reservation.reservation_details &&
+                                                reservation.reservation_details
+                                                    .Status
+                                        )
+                                    }}
+                                    {{
+                                        console.log(
+                                            "Status:",
+                                            reservation &&
+                                                reservation.reservation_details &&
+                                                reservation.reservation_details
+                                                    .Status
+                                        )
+                                    }}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <button
+                                    @click="openModal(reservation)"
+                                    class="bg-green-800 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                >
+                                    View
+                                </button>
+                            </td>
+                            <td class="px-6 py-4">
+                                <button
+                                    @click="
+                                        approveReservation(
+                                            reservation.reservation_details
+                                                .reservation_id
+                                        )
+                                    "
+                                    class="bg-green-800 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                >
+                                    Approve
+                                </button>
+                                <button
+                                    @click="
+                                        confirmDecline(
+                                            reservation.reservation_details
+                                                .reservation_id
+                                        )
+                                    "
+                                    class="bg-red-800 hover:bg-red-700 text-white mt-2 mb-2 font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                >
+                                    Decline
+                                </button>
+                                <button
+                                    @click="openRescheduleModal(reservation)"
+                                    class="bg-yellow-500 hover:bg-yellow-400 text-white font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                >
+                                    Reschedule
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
+        <!--Content End-->
+        <div>
+            <reservationModal
+                v-if="showModal"
+                :reservation="selectedReservation"
+                @close="closeModal"
+            ></reservationModal>
+            <div v-if="showRescheduleModal" class="modal">
+                <div class="modal-content reschedule-content">
+                    <h2>Reschedule Reservation</h2>
+                    <!-- Date Pickers and Time Inputs -->
+                    <div class="reschedule-grid">
+                        <!-- Start Date and End Date -->
+                        <div class="reschedule-row">
+                            <label for="startDatePicker">Start Date:</label>
+                            <input
+                                v-model="
+                                    modifiedReservation.reservation_details
+                                        .eventDateFrom
+                                "
+                                class="date-input"
+                                placeholder="Start Date"
+                                id="startDatePicker"
+                                @focus="showStartDatePicker"
+                            />
+                            <label for="endDatePicker">End Date:</label>
+                            <input
+                                v-model="
+                                    modifiedReservation.reservation_details
+                                        .eventDateTo
+                                "
+                                class="date-input"
+                                placeholder="End Date"
+                                id="endDatePicker"
+                                @focus="showEndDatePicker"
+                            />
+                        </div>
+                        <!-- Start Time and End Time -->
+                        <div class="reschedule-row">
+                            <label for="startTimeInput">Start Time:</label>
+                            <input
+                                type="time"
+                                v-model="
+                                    modifiedReservation.reservation_details
+                                        .startTime
+                                "
+                                @change="setTimeFormat"
+                                required
+                                id="startTimeInput"
+                            />
+                            <label for="endTimeInput">End Time:</label>
+                            <input
+                                type="time"
+                                v-model="
+                                    modifiedReservation.reservation_details
+                                        .endTime
+                                "
+                                @change="setTimeFormat"
+                                required
+                                id="endTimeInput"
+                            />
+                        </div>
+                        <!-- Buttons -->
+                        <div class="reschedule-row">
+                            <div></div>
+                            <div class="buttons">
+                                <button @click="saveRescheduledReservation">
+                                    Save Changes
+                                </button>
+                                <button @click="showRescheduleModal = false">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
-      </div>
-  </div>
 </template>
 
-<script>
-import axios from 'axios';
-import reservationModal from '../ReservationModal.vue';
-import Swal from 'sweetalert2';
-import flatpickr from 'flatpickr'; // Import Flatpickr library
-import 'flatpickr/dist/flatpickr.min.css'; // Import Flatpickr styles
+<script setup>
+import axios from "axios";
+import Swal from "sweetalert2";
+import flatpickr from "flatpickr"; // Import Flatpickr library
+import "flatpickr/dist/flatpickr.min.css"; // Import Flatpickr styles
+import { adminReservation } from './PagesAdminStore/adminReservation.js';
+import { onMounted } from 'vue'
+const admin = adminReservation();
 
-
-  export default {
-    components: {
-      reservationModal
-    },
-      data() {
-        return {
-          expanded: false,
-          reservations: [],
-          isSidePanelOpen: true,
-          showModal: false,
-          selectedReservation: [], 
-          selectedStatus: 'all',
-          filteredReservations: [],
-          status: 'Pending',
-          notification: null,
-          showRescheduleModal: false, 
-
-          modifiedReservation: {
-            reservation_details: {
-              eventDateFrom: '',
-              eventDateTo: '',
-            },
-          },
-        };
-  },
-  mounted () {
-    this.loadAdminReservations();
-    this.checkUser();
-  },
-
-  methods: {
-
-        filterReservations() {
-          if (this.selectedStatus === 'all') {
-            this.filteredReservations = this.reservations; // Show all reservations
-          } else {
-            const selectedStatus = parseInt(this.selectedStatus);
-            this.filteredReservations = this.reservations.filter(
-              reservation => reservation.reservation_details.Status === selectedStatus
-            );
-          }
-        },
-
-        showStartDatePicker() {
-        flatpickr("#startDatePicker", {
-        dateFormat: "Y-m-d",
-        onClose: selectedDates => {
-          this.modifiedReservation.reservation_details.eventDateFrom = selectedDates[0];
-        }
-        // Add other Flatpickr options if needed
-      }).open();
-        },
-        showEndDatePicker() {
-          flatpickr("#endDatePicker", {
-            dateFormat: "Y-m-d",
-            onClose: selectedDates => {
-              this.modifiedReservation.reservation_details.eventDateTo = selectedDates[0];
-            }
-            // Add other Flatpickr options if needed
-          }).open();
-        },
-
-    toggleExpand(){
-      this.expanded = !this.expanded;   
-    },
-
-    logout() {
-        axios.post('/logout').then(({data})=>{
-          this.checkUser();
-        })
-      },
-      checkUser(){
-        axios.post('/check-user').then(({data})=>{
-          if(!data){
-            this.$router.push('/admin/login');
-            window.location.reload(); // Reload the page after redirecting to login
-          }
-        })
-      },
-
-    loadAdminReservations() {
-      axios.get('/reservations') // Adjust the API endpoint to fetch admin-specific reservations
-        .then(({ data }) => {
-          this.reservations = data;
-          this.filteredReservations = data;
-        })
-        .catch(error => {
-          console.error('Error loading admin reservations:', error);
-        });
-    },
-
-    showNotification(message, statusClass) {
-      this.notification = { message, statusClass };
-      setTimeout(() => {
-        this.notification = null;
-      }, 3000); // Hide the notification after 3 seconds (adjust as needed)
-    },
-
-
-    //-------------------APPROVE RESERVATION-------------------------//
-    approveReservation(reservationId) {
-    axios.post(`/approve-reservation/${reservationId}`)
-      .then(response => {
-        // Assuming the API returns the updated reservation data,
-        // you might want to update the local data or refresh the reservation list
-        this.loadAdminReservations(); // Update the reservations after approval
-        this.showNotification('Reservation Approved!', 'notification-success');
-        // Show SweetAlert2 confirmation
-        Swal.fire({
-            title: 'Approved!',
-            text: 'This Reservation has been approved',
-            icon: 'success',});
-      })
-      .catch(error => {
-        console.error('Error approving reservation:', error);
-        this.showNotification('Failed to approve reservation', 'notification-error');
-      });
-  }, 
-
-//----------------------DECLINE THE RESERVATION-----------------//
-  confirmDecline(reservationId) {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: 'You will not be able to recover this reservation!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Decline',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.declineReservation(reservationId);
-        }
-      });
-    },
-  declineReservation(reservationId) {
-    axios.post(`/cancel-reservation/${reservationId}`)
-      .then(response => {
-        this.loadAdminReservations(); // Update the reservations after decline
-        this.showNotification('Reservation Declined!', 'notification-cancelled');
-
-        // Show SweetAlert2 confirmation
-        Swal.fire(
-          'Declined!',
-          'This Reservation has been declined.',
-          'success'
-        );
-      })
-      .catch(error => {
-        console.error('Error declining reservation:', error);
-        this.showNotification('Failed to decline reservation', 'notification-error');
-      });
-  },
-
-      //-----------------RESCHEDULE--------------------------//
-      openRescheduleModal(reservation) {
-        this.selectedReservation = reservation;
-        this.showRescheduleModal = true;
-        this.modifiedReservation = { ...reservation }; // Create a copy for modifications
-      },
-
-      saveRescheduledReservation() {
-        const reservationId = this.modifiedReservation.reservation_details.reservation_id;
-        console.log('Event Date From (before Axios):', this.modifiedReservation.reservation_details.eventDateFrom);
-        console.log('Event Date To (before Axios):', this.modifiedReservation.reservation_details.eventDateTo);
-        // Format the date to 'YYYY-MM-DD HH:MM:SS' before sending to the server
-        const formattedEventDateFrom = new Date(this.modifiedReservation.reservation_details.eventDateFrom).toISOString().slice(0, 19).replace('T', ' ');
-        const formattedEventDateTo = new Date(this.modifiedReservation.reservation_details.eventDateTo).toISOString().slice(0, 19).replace('T', ' ');
-
-        
-        axios.post(`/reschedule-reservation/${reservationId}`, {
-              eventDateFrom: formattedEventDateFrom,
-              eventDateTo: formattedEventDateTo,
-              startTime: this.modifiedReservation.reservation_details.startTime,
-              endTime: this.modifiedReservation.reservation_details.endTime,
-        })
-        .then(response => {
-            this.loadAdminReservations(); // Update the reservations after rescheduling
-            this.showNotification('Reservation Rescheduled!', 'notification-reschedule');
-            this.showRescheduleModal = false; // Close the modal after successful reschedule
-        })
-        .catch(error => {
-            console.error('Error rescheduling reservation:', error);
-            this.showNotification('Failed to reschedule reservation', 'notification-error');
-        });
-      },
-
-      //--------------COLOR OF STATUS ------------------//
-      getStatusText(status) {
-    switch (status) {
-      case 0:
-        return 'Pending';
-      case 1:
-        return 'Approved';
-      case 2:
-        return 'Finished';
-      case 3:
-        return 'Declined';
-      default:
-        return 'Unknown';
-    }
-  },
-        
-
-    toggleSidePanel() {
-      this.isSidePanelOpen = !this.isSidePanelOpen;
-    },
-    openModal(reservation) {
-      this.selectedReservation = reservation;
-      this.showModal = true;
-    },
-    closeModal() {
-      this.showModal = false;
-    },
-  },
-  computed: {
-    statusClass() {
-      return {
-        'bg-yellow-500': this.status === 'Pending',
-        'bg-green-800': this.status === 'Approved',
-        'bg-red-500': this.status === 'Cancelled',
-        'bg-yellow-400': this.status === 'Reschedule', 
-      };
-    },
-    // filterReservations() {
-    //   if (this.selectedStatus === 'all') {
-    //     this.filteredReservations = this.reservations; // Show all reservations
-    //   } else {
-    //     const selectedStatus = parseInt(this.selectedStatus);
-    //     this.filteredReservations = this.reservations.filter(
-    //       reservation => reservation.reservation_details.Status === selectedStatus
-    //     );
-    //   }
-    // },
-  },
-};
+onMounted(() => {
+    admin.loadAdminReservations();
+    admin.checkUser();
+});
+    
 </script>
 
 <style lang="">
@@ -527,109 +480,115 @@ import 'flatpickr/dist/flatpickr.min.css'; // Import Flatpickr styles
 /* ... (your existing styles) */
 /* Side Navigation Hover Effect Panel */
 .router-link:hover {
-  color: white;
-  background-color: #0C4B05;
+    color: white;
+    background-color: #0c4b05;
 }
 .active-link {
-  color: white;
-  background-color: #0C4B05;
+    color: white;
+    background-color: #0c4b05;
 }
 
-.slide-enter-active, .slide-leave-active {
-transition: transform 0.3s ease-in-out;
-
+.slide-enter-active,
+.slide-leave-active {
+    transition: transform 0.3s ease-in-out;
 }
 
-.slide-enter, .slide-leave-to {
-transform: translateX(-100%);
+.slide-enter,
+.slide-leave-to {
+    transform: translateX(-100%);
 }
 
 .transition-transform {
-transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 
 .transition-margin {
-transition: margin-right 0.3s ease-in-out;
+    transition: margin-right 0.3s ease-in-out;
 }
 
-.slide-main-enter-active, .slide-main-leave-active {
-transition: margin-right 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+.slide-main-enter-active,
+.slide-main-leave-active {
+    transition: margin-right 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-.slide-main-enter, .slide-main-leave-to {
-margin-right: 0;
+.slide-main-enter,
+.slide-main-leave-to {
+    margin-right: 0;
 }
 .overlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for transparency */
-  z-index: -1; /* Push the overlay behind the modal */
+    position: fixed;
+    inset: 0;
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.5
+    ); /* Adjust the alpha value for transparency */
+    z-index: -1; /* Push the overlay behind the modal */
 }
 .notification {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 10px;
-  background-color: #4caf50; /* Green background color */
-  color: rgb(0, 0, 0);
-  border-radius: 5px;
-  z-index: 1;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #4caf50; /* Green background color */
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    z-index: 1;
 }
 
 .notification-success {
-  background-color: #4caf50; /* Green background color for success */
-  color: white;
+    background-color: #4caf50; /* Green background color for success */
+    color: white;
 }
 
 .notification-reschedule {
-  background-color: #4caf50; /* Red background color for error */
-  color: white;
+    background-color: #4caf50; /* Red background color for error */
+    color: white;
 }
 
 /* Add these styles to your CSS file */
 .modal-content.reschedule-content {
-  padding: 20px;
+    padding: 20px;
 }
 
 .reschedule-grid {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
 
 .reschedule-row {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .reschedule-row label {
-  font-weight: bold;
-  margin-right: 10px;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 .date-input,
 #startTimeInput,
 #endTimeInput {
-  border: 1px solid #ccc;
-  padding: 8px;
-  border-radius: 4px;
-  width: calc(100% - 90px);
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    width: calc(100% - 90px);
 }
 
 .buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 /* Additional styles for buttons */
 button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
-
-
 </style>

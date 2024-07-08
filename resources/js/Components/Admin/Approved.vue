@@ -33,8 +33,8 @@
                     />
                     Reservation
                     <lord-icon
-                      @click="toggleExpand"
-                      v-if="!expanded"
+                      @click="approved.toggleExpand"
+                      v-if="!approved.expanded"
                       src="https://cdn.lordicon.com/xcrjfuzb.json"
                       trigger="hover"
                       state="hover-arrow-down-2"
@@ -42,8 +42,8 @@
                       class="w-5 h-5 ml-20"
                     />
                     <lord-icon
-                      @click="toggleExpand"
-                      v-if="expanded"
+                      @click="approved.toggleExpand"
+                      v-if="approved.expanded"
                       src="https://cdn.lordicon.com/ternnbni.json"
                       trigger="hover"
                       state="hover-arrow-up-2"
@@ -54,7 +54,7 @@
                 </router-link>
 
                 <router-link
-                  v-if="expanded"
+                  v-if="approved.expanded"
                   to="/admin/approved"
                   class="px-4 py-2 text-gray-800 router-link"
                   active-class="active-link"
@@ -139,7 +139,7 @@
                 </div>  
               </div>
               <!-- Modal -->
-              <div v-if="showModal" class="fixed inset-0 z-50 flex items-center justify-center">
+              <div v-if="approved.showModal" class="fixed inset-0 z-50 flex items-center justify-center">
                 <div class="overlay"></div>
                 <div class="bg-gray-200 w-1/2 h-1/2 rounded-md shadow-lg">
                     <!-- Modal content goes here -->
@@ -168,62 +168,16 @@
         </div><!--Content End-->
     </div>
   </template>
-  <script>
-  export default {
-    data() {
-      return {
-        expanded: true,
-        isSidePanelOpen: true,
-        showModal: false,
-        status: 'Approved',
-        notification: null,
-      };
-    },
-    
-    methods: {
-     
-      showNotification(message, statusClass) {
-        this.notification = { message, statusClass };
-        setTimeout(() => {
-          this.notification = null;
-        }, 3000); // Hide the notification after 3 seconds (adjust as needed)
-      },
-      approveReservation() {
-        this.status = 'Approved';
-        this.showNotification('Reservation Approved!', 'notification-success');
-      },
-      rescheduleReservation() {
-        this.status = 'Reschedule';
-        this.showNotification('Reservation Rescheduled!', 'notification-reschedule');
-      },
-      toggleSidePanel() {
-        this.isSidePanelOpen = !this.isSidePanelOpen;
-      },
-      openModal() {
-        this.showModal = true;
-      },
-      closeModal() {
-        this.showModal = false;
-      },
-    },
-    computed: {
-      statusClass() {
-        return {
-          'bg-yellow-500': this.status === 'Pending',
-          'bg-green-800': this.status === 'Approved',
-          'bg-yellow-400': this.status === 'Reschedule', // Use 'bg-red-800' for the Reschedule status
-          // Add more conditions for other statuses if needed
-        };
-      },
-    },
-  };
+  <script setup>
+  import { approvedAdmin } from "./ComponentsAdminStore/approvedAdmin.js";
+  const approve = approvedAdmin();
   </script>
   
   <style lang="">
   /* Add any additional styles for the modal here */
   </style>
   
-  <style scoped>
+<style scoped>
   /* ... (your existing styles) */
   /* Side Navigation Hover Effect Panel */
   .router-link:hover {
