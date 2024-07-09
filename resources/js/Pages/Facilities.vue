@@ -186,7 +186,7 @@ export default {
     },
 
     methods: {
-        loadFacilities() {
+        getFacilities() {
             axios
                 .get("/list-facilities")
                 .then((response) => {
@@ -219,7 +219,7 @@ export default {
         },
     },
     mounted() {
-        this.loadFacilities();
+        this.getFacilities();
     },
 };
 </script>
