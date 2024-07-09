@@ -24,13 +24,13 @@
                     <form class="">
                         <div class="mb-4 mt-4">
                             <label
-                                class="block text-gray-700 font-semibold"
+                                class="block text-gray-700 font-semibold text-lg"
                                 for="facility-name"
                                 >Facility Name</label
-                            >
+                            >   
                             <input
                                 v-model="name"
-                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 type="text"
                                 id="facility-name"
                                 name="facility-name"
@@ -41,13 +41,13 @@
 
                         <div class="mb-4">
                             <label
-                                class="block text-gray-700 font-semibold"
+                                class="block text-gray-700 font-semibold text-lg"
                                 for="facility-short-description"
                                 >Short Description</label
                             >
                             <input
                                 v-model="shortdes"
-                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 type="text"
                                 id="shortdes"
                                 name="shortdes"
@@ -58,7 +58,7 @@
 
                         <div class="mb-4">
                             <label
-                                class="block text-gray-700 font-semibold"
+                                class="block text-gray-700 font-semibold text-lg"
                                 for="facility-description"
                                 >Facility Description</label
                             >
@@ -71,13 +71,13 @@
 
                         <div class="mb-4">
                             <label
-                                class="block text-gray-700 font-semibold"
+                                class="block text-gray-700 font-semibold text-lg"
                                 for="facility-location"
                                 >Location</label
                             >
                             <textarea
                                 v-model="location"
-                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 id="facility-location"
                                 name="facility-location"
                                 rows="4"
@@ -88,13 +88,13 @@
 
                         <div class="mb-4">
                             <label
-                                class="block text-gray-700 font-semibold"
+                                class="block text-gray-700 font-semibold text-lg"
                                 for="facility-tags"
                                 >Tags
                             </label>
                             <input
                                 v-model="tags"
-                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 type="text"
                                 id="facility-tags"
                                 name="facility-tags"
@@ -105,13 +105,13 @@
 
                         <div class="mb-4 mt-4">
                             <label
-                                class="block text-gray-700 font-semibold"
+                                class="block text-gray-700 font-semibold text-lg"
                                 for="facility-capacity"
                                 >Capacity</label
                             >
                             <input
                                 v-model="capacity"
-                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                class="w-full text-lg  px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 type="number"
                                 id="facility-capacity"
                                 name="facility-capacity"
@@ -124,12 +124,12 @@
                         <div class="flex justify-center">
                             <router-link
                                 to="/admin/adminfacilities"
-                                class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-red-500 mr-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                class="text-lg bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-red-500 mr-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
                             >
                                 Cancel
                             </router-link>
                             <button
-                                class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                class="text-lg bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
                                 @click.prevent="nextStep(2)"
                             >
                                 Next
@@ -155,21 +155,21 @@
                         </div>
                     </div>
                     <!-- Add Prices form -->
-                    <div class="mb-4 py-2">
+                    <div class="mb-4 py-2 ">
                         <label
-                            class="block text-gray-700 font-semibold"
+                            class="block text-gray-700 font-semibold text-lg"
                             for="amount"
                             >Amount (₱)</label
                         >
                         <div class="relative">
                             <span
-                                class="absolute inset-y-0 left-0 flex items-center pl-2"
+                                class="absolute inset-y-0 left-0 flex items-center pl-2 text-lg"
                             >
                                 ₱
                             </span>
                             <input
                                 v-model="amount"
-                                class="pl-8 w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus-ring-2 focus-ring-green-800"
+                                class="pl-8 text-lg w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus-ring-2 focus-ring-green-800"
                                 type="number"
                                 id="amount"
                                 name="amount"
@@ -181,14 +181,14 @@
 
                     <div class="mb-4">
                         <label
-                            class="block text-gray-700 font-semibold"
+                            class="block text-gray-700 font-semibold text-lg"
                             for="month-from"
                             >Month From</label
                         >
                         <select
                             v-model="monthFrom"
                             id="month-from"
-                            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus-ring-2 focus-ring-green-800"
+                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus-ring-2 focus-ring-green-800"
                         >
                             <option
                                 v-for="month in months"
@@ -202,14 +202,14 @@
                     <!-- Dropdown for Month To -->
                     <div class="mb-4">
                         <label
-                            class="block text-gray-700 font-semibold"
+                            class="block text-gray-700 font-semibold text-lg"
                             for="month-to"
                             >Month To</label
                         >
                         <select
                             v-model="monthTo"
                             id="month-to"
-                            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus-ring-2 focus-ring-green-800"
+                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus-ring-2 focus-ring-green-800"
                         >
                             <option
                                 v-for="month in months"
@@ -222,13 +222,13 @@
 
                     <div class="mb-4 py-2">
                         <label
-                            class="block text-gray-700 font-semibold"
+                            class="block text-gray-700 font-semibold text-lg"
                             for="amount"
                             >Hours</label
                         >
                         <input
                             v-model="hours"
-                            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus-ring-2 focus-ring-green-800"
+                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus-ring-2 focus-ring-green-800"
                             type="text"
                             id="hours"
                             name="hours"
@@ -239,14 +239,14 @@
 
                     <div class="mb-4">
                         <label
-                            class="block text-gray-700 font-semibold"
+                            class="block text-gray-700 font-semibold text-lg"
                             for="time-period"
                             >Time Period</label
                         >
                         <select
                             v-model="timePeriod"
                             id="time-period"
-                            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                         >
                             <option value="1">Daytime</option>
                             <option value="2">Nighttime</option>
@@ -255,7 +255,7 @@
                     </div>
 
                     <button
-                        class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                        class="bg-green-800 text-lg hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
                         @click.prevent="addPrice"
                     >
                         Add
@@ -430,7 +430,7 @@ export default {
             description: "",
             location: "",
             tags: "",
-            capacity: 0,
+            capacity: "  ",
             amount: "",
             monthFrom: "",
             monthTo: "",

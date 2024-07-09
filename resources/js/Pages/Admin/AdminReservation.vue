@@ -25,7 +25,7 @@
                         Dashboard
                     </span>
                 </router-link>
-                <router-link
+                <!-- <router-link
                     to="/admin/admincalendar"
                     class="block px-4 py-2 text-gray-800 router-link"
                     active-class="active-link"
@@ -39,7 +39,7 @@
                         />
                         Calendar
                     </span>
-                </router-link>
+                </router-link> -->
 
                 <!--Updated by jhn-->
                 <router-link
@@ -143,7 +143,7 @@
                     class="block px-4 py-2 text-gray-800 router-link"
                     active-class="active-link"
                 >
-                    <span @click="logout" class="flex items-center">
+                    <span @click="admin.logout" class="flex items-center">
                         <lord-icon
                             src="https://cdn.lordicon.com/whtfgdfm.json"
                             trigger="hover"
@@ -467,7 +467,7 @@ const admin = adminReservation();
 
 onMounted(() => {
     admin.loadAdminReservations();
-    admin.checkUser();
+    admin.checkUser();  
 });
     
 </script>

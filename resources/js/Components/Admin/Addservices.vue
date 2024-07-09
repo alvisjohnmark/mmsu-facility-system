@@ -1,29 +1,29 @@
 <template>
-    <div>
+    <div class="p-4">
         <!-- Go Back button -->
         <button
             @click="goBack"
-            class="bg-gray-500 text-white px-4 py-2 rounded mt-4"
+            class="bg-gray-500 text-white px-4 ml-8 py-2 rounded mt-4"
         >
             Go Back
         </button>
 
-        <div class="m-8">
+        <div class="flex justify-center ">
             <form
                 @submit.prevent="addService"
-                class="flex flex-col space-y-4"
+                class="flex flex-col space-y-4 border p-8 rounded-xl bg-gray-100 shadow-md"
                 style="font-family: Advantage"
-            >
+            >   
                 <div class="flex flex-row space-x-4">
                     <div class="w-1/3">
                         <label
-                            class="block text-gray-700 font-semibold"
+                            class="block text-gray-700 font-semibold text-xl"
                             for="service-name"
                             >Service Name</label
                         >
                         <input
                             v-model="serviceName"
-                            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                             type="text"
                             id="service-name"
                             name="service-name"
@@ -33,14 +33,14 @@
                     </div>
                     <div class="w-1/3">
                         <label
-                            class="block text-gray-700 font-semibold"
+                            class="block text-gray-700 font-semibold text-xl"
                             for="service-type"
                             >Type</label
                         >
                         <select
                             v-model="serviceType"
                             id="service-type"
-                            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                            class="w-full text-lg px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                         >
                             <option value="audiovisual">Audiovisual</option>
                             <option value="food">Food</option>
@@ -51,13 +51,13 @@
                     </div>
                     <div class="w-1/3">
                         <label
-                            class="block text-gray-700 font-semibold"
+                            class="block text-gray-700 font-semibold text-xl"
                             for="service-fee"
                             >Fee</label
                         >
                         <input
                             v-model="serviceFee"
-                            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                             type="number"
                             id="service-fee"
                             name="service-fee"
@@ -67,13 +67,13 @@
                     </div>
                     <div class="w-1/3">
                         <label
-                            class="block text-gray-700 font-semibold"
+                            class="block text-gray-700 font-semibold text-xl"
                             for="service-unit"
                             >Unit</label
                         >
                         <input
                             v-model="serviceUnit"
-                            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                             type="text"
                             id="service-unit"
                             name="service-unit"
@@ -82,13 +82,13 @@
                     </div>
                     <div class="w-2/3">
                         <label
-                            class="block text-gray-700 font-semibold"
+                            class="block text-gray-700 font-semibold text-xl"
                             for="service-note"
                             >Note</label
                         >
                         <textarea
                             v-model="serviceNote"
-                            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                             id="service-note"
                             name="service-note"
                             rows="3"
@@ -100,14 +100,14 @@
                 <div class="flex flex-row space-x-4">
                     <div class="w-1/2">
                         <label
-                            class="block text-gray-700 font-semibold"
+                            class="block text-gray-700 font-semibold text-xl"
                             for="month-from"
                             >Month From</label
                         >
                         <select
                             v-model="monthFrom"
                             id="month-from"
-                            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                         >
                             <option
                                 v-for="(month, index) in months"
@@ -120,14 +120,14 @@
                     </div>
                     <div class="w-1/2">
                         <label
-                            class="block text-gray-700 font-semibold"
+                            class="block text-gray-700 font-semibold text-xl"
                             for="month-to"
                             >Month To</label
                         >
                         <select
                             v-model="monthTo"
                             id="month-to"
-                            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                         >
                             <option
                                 v-for="(month, index) in months"
@@ -142,7 +142,7 @@
 
                 <button
                     type="submit"
-                    class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 mx-auto transition ease-in-out delay-200 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                    class="bg-green-800  text-xl hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 mx-auto transition ease-in-out delay-200 hover:-translate-y-1 hover:scale-110 hover:duration-300"
                 >
                     Confirm
                 </button>
@@ -173,30 +173,30 @@
                         :class="index % 2 === 0 ? 'bg-gray-100' : 'bg-white'"
                     >
                         <td class="px-4 py-2 text-center border">
-                            {{ service.service_name }}
+                            <span class="text-lg">{{ service.service_name }}</span>
                         </td>
                         <td class="px-4 py-2 text-center border">
-                            {{ service.type }}
+                            <span class="text-lg">{{ service.type }}</span>
                         </td>
                         <td class="px-4 py-2 text-center border">
-                            {{ service.fee }}
+                            <span class="text-lg">{{ service.fee }}</span>
                         </td>
                         <td class="px-4 py-2 text-center border">
-                            {{ service.unit }}
+                            <span class="text-lg">{{ service.unit }}</span>
                         </td>
                         <td class="px-4 py-2 text-center border">
-                            {{ service.note }}
+                            <span class="text-lg">{{ service.note }}</span>
                         </td>
                         <td class="px-4 py-2 text-center border">
-                            {{ getMonthName(service.monthFrom) }}
+                            <span class="text-lg">{{ getMonthName(service.monthFrom) }}</span>
                         </td>
                         <td class="px-4 py-2 text-center border">
-                            {{ getMonthName(service.monthTo) }}
+                            <span class="text-lg">{{ getMonthName(service.monthTo) }}</span>
                         </td>
                         <td class="px-4 py-2 text-center border">
                             <button
                                 @click="deleteService(index)"
-                                class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                                class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded text-lg "
                             >
                                 Delete
                             </button>
@@ -208,7 +208,7 @@
             <!-- Button to add services to the table -->
             <button
                 @click="saveServices"
-                class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded mt-4"
+                class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded  text-lg mt-4"
             >
                 Save Changes
             </button>
@@ -357,16 +357,6 @@ export default {
 }
 
 /* Button Style */
-.m-8 button {
-    padding: 12px 18px;
-    background-color: #0c4b05;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 14px;
-}
 
 .m-8 button:hover {
     background-color: #084104;

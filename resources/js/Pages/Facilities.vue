@@ -199,6 +199,7 @@ export default {
                             .then((imagesResponse) => {
                                 // Assign fetched images to each facility
                                 facility.images = imagesResponse.data;
+                                console.log(facility)
                             })
                             .catch((error) => {
                                 console.error(

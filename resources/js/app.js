@@ -18,7 +18,8 @@ import '../css/app.css';
 import VueSplide from '@splidejs/vue-splide';
 import CKEditor from '@ckeditor/ckeditor5-vue';
 import FullCalendar from '@fullcalendar/vue3';
-
+import { setupCalendar, Calendar, DatePicker } from 'v-calendar';
+import 'v-calendar/style.css';
 // pinia js
 
 const pinia = createPinia()
@@ -30,6 +31,7 @@ pinia.use(({store}) => {
 
 const app = createApp(App);
 
+app.use(setupCalendar, {})
 app.use(pinia);
 app.use(router);
 app.component('Navbar', Navbar);
@@ -40,6 +42,8 @@ app.component('Addfacilities', Addfacilities);
 app.component('Addservices', Addservices);
 app.component('EditServices', EditServices);
 app.component('ReviewForm', ReviewForm);
+app.component('VCalendar', Calendar)
+app.component('VDatePicker', DatePicker)
 
 app.mount('#app');
 app.use(CKEditor);
