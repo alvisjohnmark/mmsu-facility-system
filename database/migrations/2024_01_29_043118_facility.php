@@ -21,6 +21,7 @@ class Facility extends Migration
             $table->string('location',255);
             $table->text('shortdes');
             $table->text('description');
+            $table->integer('availability');
             $table->string('tags');
             $table->timestamps();
         });

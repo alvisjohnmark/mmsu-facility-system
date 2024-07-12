@@ -18,27 +18,21 @@ class FacilitiesController extends Controller
             //from the internet, Carbon, idk what is carbon ;<
             public function loadFacilities (Request $request)
             {
-            // Get the current month (assuming it's 1-12)
-                $currentMonth = date('n');
 
-                // Load facilities with prices for the current month
-                $facilities = Facility::with(['prices' => function ($query) use ($currentMonth) {
-                    $query->where(function ($q) use ($currentMonth) {
-                        $q->where('monthFrom', '<=', $currentMonth)  // Check if the price is valid for the current month
-                            ->where(function ($q) use ($currentMonth) {
-                                $q->where('monthTo', '>=', $currentMonth) // Check if the price is valid until the end of the current month or indefinitely
-                                    ->orWhereNull('monthTo');
-                            });
+            $facilities = Facility::get();
+
+            // If you have timePeriod and monthFrom/monthTo stored as integers, map them to their respective names
+                    $facilities->transform(function ($facility) {
+                        $facility->prices->transform(function ($price) {
+                            $price->timePeriod = $this->getTimePeriodName($price->timePeriod);
+                            $price->monthFrom = $this->getMonthName($price->monthFrom);
+                            $price->monthTo = $this->getMonthName($price->monthTo);
+                            return $price;
+                        });
+                        return $facility;
                     });
-                }])
-                ->get();    
 
-            // Transform tags string to array for each facility
-                foreach ($facilities as &$facility) {
-                    $facility['tagsArray'] = explode(', ', $facility['tags']); // Assuming 'tags' is the field in the Facility model
-                }
-
-                return response()->json($facilities);
+            return response()->json($facilities);
         }
 
         //For the Reservation
@@ -85,6 +79,7 @@ public function saveFacility(Request $request)
         $facility->location = $request->location;
         $facility->capacity = $request->capacity;
         $facility->tags = $request->tags;
+        $facility->availability = $request->availability;
         $facility->save();
 
         return response()->json(['id' => $facility->id]);

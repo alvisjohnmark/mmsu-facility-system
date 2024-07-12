@@ -1,5 +1,5 @@
 <template>
-    <footer class="custom-footer">
+    <footer class="custom-footer mt-auto">
       <div class="flex items-center justify-center">
         <div class="container p-7 center-text"> <!-- Added 'center-text' class -->
           <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
@@ -40,7 +40,7 @@
   
       <!-- Copyright section -->
       <div class="footer-copyright">
-        © 2023 OJT GROUP
+        © 2023 OJT GROUP & JM
         <!-- <a class="footer-link" href="https://yourwebsite.com">Your Website</a> -->
       </div>
     </footer>

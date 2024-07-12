@@ -260,7 +260,8 @@ export default {
     },
     methods: {
         onFileChange(event) {
-            const files = event.target.files[0];
+            const files = event.target.files[0];    
+            
             if (files) {
                 this.image.file = files;
 

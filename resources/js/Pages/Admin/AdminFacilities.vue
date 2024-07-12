@@ -1,7 +1,7 @@
 <template lang="">
     <div class="flex flex-row w-full">
         <!--Main-->
-        <aside class="sticky top-0 shadow-lg shadow-gray-500 w-80 h-screen">
+        <aside class="sticky top-0 shadow-xl shadow-gray-500 w-80 h-screen">
             <!--Side Nav-->
 
             <div class="flex items-center justify-center h-14 mt-20">
@@ -141,7 +141,7 @@
                     class="block px-4 py-2 text-gray-800 router-link"
                     active-class="active-link"
                 >
-                    <button @click="logout()" class="flex items-center">
+                    <button @click="logout" class="flex items-center">
                         <lord-icon
                             src="https://cdn.lordicon.com/whtfgdfm.json"
                             trigger="hover"
@@ -184,7 +184,7 @@
                     >
                         <router-link
                             to="/addfacilities"
-                            class="flex items-center text-white text-lg font-semibold mr-7 router-link"
+                            class="flex items-center text-white text-xl font-semibold mr-7 router-link"
                             active-class="active-link"
                         >
                             <lord-icon
@@ -209,7 +209,7 @@
                     style="background-color: #c0c0c0"
                 >
                     <span
-                        class="flex items-center text-black text-lg italic font-semibold ml-4"
+                        class="flex items-center text-black text-xl italic font-semibold ml-4"
                         style="font-family: Advantage"
                     >
                         <img
@@ -225,77 +225,90 @@
 
             <!--content na-->
             <div class="content-container">
-                <div
-                    class="mt-1 grid grid-cols-1 gap-4 p-6 flex justify-center shadow-md"
-                    style="font-family: Sans-serif"
-                >
+                <div class="">
                     <div
-                        v-for="facility in facilities"
-                        :key="facility.id"
-                        class="rounded-lg w-20"
+                        class="mt-1 grid grid-cols-1 gap-4 p-6 flex justify-center"
+                        style="font-family: Sans-serif"
                     >
-                        <div class="p-4 bg-gray-100">
-                            <h3 class="font-semibold text-3xl">
-                                <strong>{{ facility.facility_name }}</strong>
-                            </h3>
-                            <p
-                                class="text-gray-900 text-justify mt-4 text-2xl"
-                                v-html="facility.description"
-                            ></p>
-                            <p class="text-gray-900 mt-3 text-2xl">
-                                <span><strong>Short Description:</strong></span>
-                                {{ facility.shortdes }}
-                            </p>
-                            <p class="text-gray-900 mt-3 text-2xl">
-                                <span><strong>Location:</strong></span>
-                                {{ facility.location }}
-                            </p>
-                            <p class="text-gray-900 mt-3 text-2xl">
-                                <span><strong>Capacity:</strong></span>
-                                {{ facility.capacity }}
-                            </p>
-                            <p class="text-gray-900 mt-3 text-2xl">
-                                <span><strong>Tags:</strong></span>
-                                {{ facility.tags }}
-                            </p>
-                            <p class="text-gray-900 mt-3 text-2xl">
-                                <span><strong>Price:</strong></span>
-                                {{ facility.amount }}
-                            </p>
-                            <div
-                                v-for="price in facility.prices"
-                                :key="price.id"
-                            >
-                                <p class="text-2xl">
-                                    ₱ {{ price.amount }} per
-                                    {{ price.hours }} hours
+                        <div
+                            v-for="facility in facilities"
+                            :key="facility.id"
+                            class="rounded-xl shadow-md px-2 "
+                            style="background-color: #0c4b05"
+                        >
+                            <div class="p-4 bg-gray-100">
+                                <h3 class="font-semibold text-3xl text-center">
+                                    <strong>{{
+                                        facility.facility_name
+                                    }}</strong>
+                                </h3>
+                                <p
+                                    class="text-gray-900 text-justify mt-4 text-xl"
+                                    v-html="facility.description"
+                                ></p>
+                                <p class="text-gray-600 text-xl mt-4">
+                                    <span
+                                        ><strong
+                                            >Short Description:</strong
+                                        ></span
+                                    >
+                                    {{ facility.shortdes }}
                                 </p>
-                            </div>
+                                <p class="text-gray-600 text-xl mt-4">
+                                    <span ><strong>Location:</strong></span>
+                                    {{ facility.location }}
+                                </p>
+                                <p class="text-gray-600 text-xl mt-4">
+                                    <span><strong>Capacity:</strong></span>
+                                    {{ facility.capacity }}
+                                </p>
+                                <p class="text-gray-600 text-xl mt-4">
+                                    <span><strong>Tags:</strong></span>
+                                    {{ facility.tags }}
+                                </p>
+                                <p class="text-gray-600 text-xl mt-4">
+                                    <span><strong>Vacancy:</strong></span>
+                                    {{ a[facility.availability] }}
+                                </p>
+                                <p class="text-gray-600 text-xl mt-4">
+                                    <span><strong>Price:</strong></span>
+                                    {{ facility.amount }}
+                                </p>
+                                <div
+                                    v-for="price in facility.prices"
+                                    :key="price.id"
+                                >
+                                    <p class="text-xl">
+                                        ₱ {{ price.amount }} per
+                                        {{ price.hours }} hours
+                                    </p>
+                                </div>
 
-                            <div class="mt-4 flex justify-end">
-                                <button
-                                    @click="editFacility(facility.id)"
-                                    class="bg-green-800 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
-                                >
-                                    Edit
-                                </button>
-                                <router-link
-                                    v-if="facility.id"
-                                    :to="{
-                                        name: 'pic',
-                                        params: { facilityId: facility.id },
-                                    }"
-                                    class="bg-green-800 hover:bg-green-700 ml-2 mr-2 text-white font-semibold py-2 px-4 rounded router-link transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
-                                    active-class="active-link"
-                                >
-                                    Pictures
-                                </router-link>
-                                <button
-                                    @click="deleteFacility(facility.id)"
-                                    class="bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
-                                >
-                                    Delete
-                                </button>
+                                <div class="mt-4 flex justify-end">
+                                    <button
+                                        @click="editFacility(facility.id)"
+                                        class="bg-green-800 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                    >
+                                        Edit
+                                    </button>
+                                    <router-link
+                                        v-if="facility.id"
+                                        :to="{
+                                            name: 'pic',
+                                            params: { facilityId: facility.id },
+                                        }"
+                                        class="bg-green-800 hover:bg-green-700 ml-2 mr-2 text-white font-semibold py-2 px-4 rounded router-link transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                        active-class="active-link"
+                                    >
+                                        Pictures
+                                    </router-link>
+                                    <button
+                                        @click="deleteFacility(facility.id)"
+                                        class="bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -307,6 +320,7 @@
 </template>
 <script>
 import axios from "axios";
+// const availability = ["Unavailable", "Available"]
 
 export default {
     data() {
@@ -315,6 +329,7 @@ export default {
             isSidePanelOpen: true,
             showModal: false,
             facilities: [],
+            a: ["Unavailable", "Available"]
         };
     },
     methods: {
@@ -340,15 +355,15 @@ export default {
         checkUser() {
             axios.post("/check-user").then(({ data }) => {
                 if (!data) {
-                    window.location.reload(); // Reload the page after redirecting to login
                     this.$router.push("/admin/login");
+                    window.location.reload(); // Reload the page after redirecting to login
                 }
             });
         },
 
         loadAdminFacilities() {
             axios
-                .get("/load-admin-acilities") // Send a GET request to fetch admin-specific facilities
+                .get("/load-admin-facilities") // Send a GET request to fetch admin-specific facilities
                 .then(({ data }) => {
                     this.facilities = data;
                 })

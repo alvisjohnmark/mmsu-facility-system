@@ -95,6 +95,40 @@
                         <div class="mb-4 mt-4">
                             <label
                                 class="block text-gray-700 font-semibold"
+                                for="facility-tags"
+                                >Tags</label
+                            >
+                            <input
+                                v-model="tags"
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                type="texts"
+                                id="facility-tags"
+                                name="facility-tags"
+                                placeholder="Enter tags"
+                                required
+                            />
+                        </div>
+
+                        <div class="mb-4 mt-4">
+                            <label
+                                class="block text-gray-700 font-semibold"
+                                for="facility-capacity"
+                                >Availability</label
+                            >
+                            <input
+                                v-model="availability"
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                type="number"
+                                id="facility-capacity"
+                                name="facility-capacity"
+                                placeholder="Enter Availability (1,0)"
+                                required    
+                            />
+                        </div>
+
+                        <div class="mb-4 mt-4">
+                            <label
+                                class="block text-gray-700 font-semibold"
                                 for="facility-capacity"
                                 >Capacity</label
                             >
@@ -109,22 +143,6 @@
                             />
                         </div>
 
-                        <div class="mb-4 mt-4">
-                            <label
-                                class="block text-gray-700 font-semibold"
-                                for="facility-tags"
-                                >Tags</label
-                            >
-                            <input
-                                v-model="tags"
-                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
-                                type="texts"
-                                id="facility-tags"
-                                name="facility-tags"
-                                placeholder="Enter tags"
-                                required
-                            />
-                        </div>
                         <!-- ... -->
 
                         <div class="flex justify-center">
@@ -448,6 +466,7 @@ export default {
             tags: "",
             amount: "",
             monthFrom: "",
+            availability: "",
             monthTo: "",
             hours: "",
             timePeriod: "",
@@ -521,6 +540,7 @@ export default {
                 location: this.location,
                 capacity: this.capacity,
                 tags: this.tags,
+                availability: this.availability,
             };
 
             axios
@@ -553,7 +573,6 @@ export default {
                 .post("/save-edited-facility-prices/" + this.id, pricesData)
                 .then((response) => {
                     this.resetForm();
-                 
                 })
                 .catch((error) => {
                     console.error("Error uploading prices data:", error);
@@ -571,7 +590,8 @@ export default {
             this.monthFrom = "";
             this.monthTo = "";
             this.hours = "";
-            (this.timePeriod = ""), (this.prices = []);
+            this.availability= "";
+           (this.timePeriod = ""), (this.prices = []);
             this.$router.push("/admin/adminfacilities");
         },
 
@@ -618,6 +638,7 @@ export default {
                     this.description = facilityData.description;
                     this.shortdes = facilityData.shortdes;
                     this.location = facilityData.location;
+                    this.availability = facilityData.availability;
                     this.capacity = facilityData.capacity;
                     this.tags = facilityData.tags;
 

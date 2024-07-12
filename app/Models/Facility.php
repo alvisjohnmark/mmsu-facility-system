@@ -21,7 +21,7 @@ class Facility extends Model
     }
 
 
-    protected $fillable = ['admin_id', 'facility_name', 'description', 'location', 'capacity', 'amount', 'hours', 'shortdes', 'tags' ];
+    protected $fillable = ['admin_id', 'facility_name', 'description', 'location', 'capacity', 'amount', 'availability','hours', 'shortdes', 'tags' ];
 
     public function facilityPrices()
     {

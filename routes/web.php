@@ -52,11 +52,9 @@ Route::get('/facility-images/{facilityId}', [ImageController::class, 'getFacilit
 Route::match(['get', 'post'], '/check-conflict', [ReservationController::class, 'checkConflict']);
 
 
-
 // -----------------------------ADMIN--------------------------//
 
 Route::view('/admin', 'admin');
-
 
 Route::middleware(['auth', 'admin'])->group(function () {
     // Routes for the admin dashboard
@@ -99,7 +97,7 @@ Route::delete('/services/{service}', [ServicesController::class, 'destroy']);
 Route::post('/approve-reservation/{id}', [ReservationController::class, 'approveReservation']); //approve reservation
 Route::post('/cancel-reservation/{id}', [ReservationController::class, 'cancelReservation']); //cancel reservation
 Route::post('/reschedule-reservation/{id}', [ReservationController::class, 'rescheduleReservation']); //open calendar to reschedule
-Route::middleware(['auth'])->get('/load-admin-acilities', [FacilitiesController::class, 'loadAdminFacilities']);
+Route::middleware(['auth'])->get('/load-admin-facilities', [FacilitiesController::class, 'loadAdminFacilities']);
 Route::get('/admin-facilities', [FacilitiesController::class, 'loadAdminFacilities']); // Route to fetch admin facilities
 
 Route::post('/list-facilities/{id}', [FacilitiesController::class, 'getFacilityDetails']); 

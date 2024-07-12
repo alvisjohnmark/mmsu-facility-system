@@ -49,10 +49,10 @@
                                 <!-- Facility Details -->
                                 <div class="px-4 py-2">
                                     <h3 class="text-xl font-semibold mt-4">
-                                        {{ facility.facility_name }}
+                                        <p class="text-lg"><span class="font-bold">Facility: </span> {{ facility.facility_name }}</p>
                                     </h3>
                                     <p class="text-sm text-gray-600 mb-2">
-                                        <b>Location:</b> {{ facility.location }}
+                                        <p class="text-lg"><span class="font-bold">Location: </span> {{ facility.location }}</p>
                                     </p>
                                     <div class="tags-container mb-4">
                                         <!-- Display tags here -->
@@ -63,11 +63,11 @@
                                             :key="tagIndex"
                                             class="tag-box inline-block bg-gray-200 rounded-md text-xs px-2 py-1 mr-2 mb-2 hover:bg-gray-300"
                                         >
-                                            {{ tag }}
+                                        <p class="text-lg">{{tag}}</p>
                                         </div>
                                     </div>
                                     <p class="text-sm text-gray-600 mb-2">
-                                        {{ facility.shortdes }}
+                                        <p class="text-lg">{{ facility.shortdes }}</p>
                                     </p>
                                 </div>
                                 <!-- More details -->
@@ -77,37 +77,29 @@
                                     <div
                                         class="text-sm text-gray-600 mb-2 sm:mb-0 sm:mr-4 sm:w-1/3 flex-grow sm:text-left"
                                     >
-                                        <b>Capacity:</b> {{ facility.capacity }}
+                                        <p class="text-lg"><span class="font-bold">Capacity: </span> {{ facility.capacity }}</p> 
                                     </div>
+
+
                                     <div
                                         class="text-sm text-gray-600 mb-2 sm:mb-0 sm:mr-4"
                                     >
-                                        <!-- Title for prices -->
-                                        <p class="mb-2"><b>Rental Price:</b></p>
-                                        <!-- Display prices -->
                                         <div
                                             v-for="price in facility.prices"
                                             :key="price.id"
                                         >
-                                            <!-- Display prices here -->
-                                            <p>
-                                                ₱ {{ price.amount }} per
-                                                {{ price.hours }} hours
-                                                <span
-                                                    v-if="
-                                                        price.timePeriod === 1
-                                                    "
-                                                    >(DAY TIME)</span
-                                                >
-                                                <span
-                                                    v-else-if="
-                                                        price.timePeriod === 2
-                                                    "
-                                                    >(NIGHT TIME)</span
-                                                >
+                                            <p class="mb-2 text-lg">
+                                                <b>Rental Price:</b>
+                                                    <span class="text-lg">
+                                                        ₱ {{ price.amount }} per
+                                                        {{ price.hours }} hours
+                                                    </span>
                                             </p>
                                         </div>
                                     </div>
+
+
+
                                     <!-- Space div in web view -->
                                     <div
                                         class="hidden sm:block sm:w-1/12"
@@ -169,6 +161,7 @@ export default {
             facilities: [],
             tagsArray: [],
             selectedFacilityId: null,
+            availability: "",
         };
     },
     computed: {
@@ -199,7 +192,7 @@ export default {
                             .then((imagesResponse) => {
                                 // Assign fetched images to each facility
                                 facility.images = imagesResponse.data;
-                                console.log(facility)
+                                console.log(facility);
                             })
                             .catch((error) => {
                                 console.error(

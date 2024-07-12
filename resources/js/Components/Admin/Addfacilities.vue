@@ -27,7 +27,7 @@
                                 class="block text-gray-700 font-semibold text-lg"
                                 for="facility-name"
                                 >Facility Name</label
-                            >   
+                            >
                             <input
                                 v-model="name"
                                 class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
@@ -103,6 +103,23 @@
                             />
                         </div>
 
+                        <div class="mb-4">
+                            <label
+                                class="block text-gray-700 font-semibold text-lg"
+                                for="facility-tags"
+                                >Availability
+                            </label>
+                            <input
+                                v-model="availability"
+                                class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                type="number"
+                                id="facility-availability"
+                                name="facility-availability"
+                                placeholder="Enter availability (1,0)"
+                                required
+                            />
+                        </div>
+
                         <div class="mb-4 mt-4">
                             <label
                                 class="block text-gray-700 font-semibold text-lg"
@@ -111,7 +128,7 @@
                             >
                             <input
                                 v-model="capacity"
-                                class="w-full text-lg  px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 type="number"
                                 id="facility-capacity"
                                 name="facility-capacity"
@@ -155,7 +172,7 @@
                         </div>
                     </div>
                     <!-- Add Prices form -->
-                    <div class="mb-4 py-2 ">
+                    <div class="mb-4 py-2">
                         <label
                             class="block text-gray-700 font-semibold text-lg"
                             for="amount"
@@ -396,18 +413,20 @@
                             </li>
                         </ul>
                     </div>
-                    <button
-                        @click="saveData"
-                        class="bg-green-800 text-white px-4 py-2 rounded mr-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
-                    >
-                        Confirm
-                    </button>
-                    <button
-                        @click="prevStep(2)"
-                        class="bg-red-500 text-white px-4 py-2 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
-                    >
-                        Cancel
-                    </button>
+                    <div class="flex justify-end">
+                        <button 
+                            @click="saveData"
+                            class="bg-green-800 text-white px-4 py-2 rounded mr-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                        >
+                            Confirm
+                        </button>
+                        <button
+                            @click="prevStep(2)"
+                            class="bg-red-500 text-white px-4 py-2 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                        >
+                            Cancel
+                        </button>
+                    </div>  
                 </div>
             </div>
         </div>
@@ -435,6 +454,7 @@ export default {
             monthFrom: "",
             monthTo: "",
             hours: "",
+            availability: "",
             timePeriod: "",
             prices: [],
             months: [
@@ -514,6 +534,7 @@ export default {
                     capacity: this.capacity,
                     hours: this.hours,
                     timePeriod: this.timePeriod,
+                    availability: this.availability,
                     prices: this.prices,
                 };
 
@@ -570,7 +591,6 @@ export default {
             this.monthFrom = "";
             this.monthTo = "";
             this.hours = "";
-            b;
             (this.timePeriod = ""), (this.prices = []);
         },
 
