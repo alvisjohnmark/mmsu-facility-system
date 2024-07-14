@@ -284,6 +284,17 @@
                                 />
                             </td>
                         </tr>
+                        <tr>
+                            <td><label for="university_id">University ID:</label></td>
+                            <td>
+                                <input
+                                    type="text"
+                                    id="university_id"
+                                    v-model="contactInfo.university_id"
+                                />
+                            </td>
+                        </tr>
+
 
                         <tr>
                             <td>
@@ -561,7 +572,7 @@ export default {
             participants: 0,
             currentMonthFacilityPrice: "Not available",
             estimatedTotal: 0, //or etoy ti maisave ty estimation na haha
-
+            
             isConflict: false, // Flag to track conflict status
 
             services: [], // Fetch services from the backend and populate here

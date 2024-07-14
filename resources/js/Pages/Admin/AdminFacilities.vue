@@ -267,7 +267,7 @@
                                     {{ facility.tags }}
                                 </p>
                                 <p class="text-gray-600 text-xl mt-4">
-                                    <span><strong>Vacancy:</strong></span>
+                                    <span><strong>Vacancy Status:</strong></span>
                                     {{ a[facility.availability] }}
                                 </p>
                                 <p class="text-gray-600 text-xl mt-4">

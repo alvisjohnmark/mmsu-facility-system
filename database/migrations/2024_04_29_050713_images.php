@@ -17,7 +17,6 @@ class Images extends Migration
             $table->id();
             $table->foreignId('facility_id')->constrained('facility')->cascadeOnDelete();
             $table->string('filename',255)->nullable();
-            $table->string('path',255)->nullable();
             $table->timestamps();
         });
     }

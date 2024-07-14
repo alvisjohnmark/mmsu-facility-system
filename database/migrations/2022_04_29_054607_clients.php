@@ -22,9 +22,9 @@ class Clients extends Migration
             $table->string('email',255);
             $table->string('phone',10);
             $table->tinyInteger('mmsu_affiliated');
-            $table->string('university_id',255);
-            $table->string('college',255);
-            $table->string('department',255);
+            $table->string('university_id',255)->nullable();
+            $table->string('college',255)->nullable();
+            $table->string('department',255)->nullable();
             $table->string('officeAgency',255);
             $table->timestamps();
         });

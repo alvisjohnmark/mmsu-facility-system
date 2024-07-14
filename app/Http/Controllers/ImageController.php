@@ -11,12 +11,12 @@ class ImageController extends Controller
 {
     public function store(Request $request)
     {
-        
-        $file = $request->image;
-        $originalFileName = $file->getClientOriginalName();
-        $ext = $file->getClientOriginalExtension();
-        $filename = md5(explode('.', $originalFileName)[0]) . '.' . $ext;
 
+        $file = $request->image;
+        $filename = $file->getClientOriginalName();
+        // $ext = $file->getClientOriginalExtension();
+        // $filename = $originalFileName . '.' . $ext;
+        
         Storage::disk('public')->put('/images/' . $filename, File::get($file));
 
         $imageModel = new Image();
@@ -40,9 +40,9 @@ class ImageController extends Controller
             $image->url = url('/storage/images/' . $image->filename);
             return $image;
         });
-
         return $images;
     }
+
 
     public function deleteImage($id)
     {

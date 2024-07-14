@@ -138,7 +138,7 @@
                         style="font-family: Advantage"
                     >
                         <img
-                            src="public/icons/Gallery.gif"
+                            src="/../../icons/Gallery.gif"
                             alt="Gallery Icon"
                             class="w-10 h-10 mr-2"
                         />
@@ -213,11 +213,11 @@
                                     :key="index"
                                     class="border-b border-gray-200"
                                 >
-                                    <td class="py-4">
+                                    <td class="py-4 flex justify-center max-w-full h-full">
                                         <img
                                             :src="image.url"
                                             alt="Uploaded Image"
-                                            class="justify-center max-w-full h-auto"
+                                            class="object-fill"
                                             style="
                                                 max-width: 100px;
                                                 max-height: 100px;
@@ -260,8 +260,8 @@ export default {
     },
     methods: {
         onFileChange(event) {
-            const files = event.target.files[0];    
-            
+            const files = event.target.files[0];
+
             if (files) {
                 this.image.file = files;
 
@@ -272,16 +272,19 @@ export default {
                 fileReader.readAsDataURL(files);
             }
         },
+
         fetchImageList() {
             axios
                 .post("/imageList", { facilityId: this.facilityId })
                 .then((response) => {
                     this.image_list = response.data;
+                    console.log(this.image_list)
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         },
+
         deleteImage(id) {
             if (confirm("Are you sure you want to delete this Image?")) {
                 axios
@@ -321,6 +324,7 @@ export default {
                     alert("Upload successful");
                     this.image.file = null;
                     this.previewImage = null;
+                    // console.log(imageData.url)
 
                     // Auto-reload after successful upload
                     setTimeout(() => {

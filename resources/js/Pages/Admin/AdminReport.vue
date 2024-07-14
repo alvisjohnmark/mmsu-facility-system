@@ -136,7 +136,7 @@
                         style="font-family: Advantage"
                     >
                         <img
-                            src="\Icons\Report.gif"
+                            src="/../../icons/Report.gif"
                             alt="Report Icon"
                             class="w-10 h-10 mr-2"
                         />

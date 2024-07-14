@@ -199,7 +199,7 @@ export default {
                                     "Error fetching images for facility:",
                                     error
                                 );
-                            });
+                            });s
                     });
                 })
                 .catch((error) => {
