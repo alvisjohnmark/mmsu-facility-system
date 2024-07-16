@@ -25,7 +25,7 @@ class Clients extends Migration
             $table->string('university_id',255)->nullable();
             $table->string('college',255)->nullable();
             $table->string('department',255)->nullable();
-            $table->string('officeAgency',255);
+            $table->string('officeAgency',255)->nullable();
             $table->timestamps();
         });
     }

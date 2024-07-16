@@ -25,7 +25,7 @@
                         Dashboard
                     </span>
                 </router-link>
-                <!-- <router-link
+                <router-link
                     to="/admin/admincalendar"
                     class="block px-4 py-2 text-gray-800 router-link"
                     active-class="active-link"
@@ -39,7 +39,7 @@
                         />
                         Calendar
                     </span>
-                </router-link> -->
+                </router-link>
 
                 <!--Updated by jhn-->
                 <router-link
@@ -314,12 +314,7 @@
                                     ]"
                                 >
                                     {{
-                                        getStatusText(
-                                            reservation &&
-                                                reservation.reservation_details &&
-                                                reservation.reservation_details
-                                                    .Status
-                                        )
+                                        statuss[reservation.reservation_details.status]
                                     }}
                                     {{
                                         console.log(
@@ -476,7 +471,7 @@ export default {
             selectedReservation: [],
             selectedStatus: "all",
             filteredReservations: [],
-            status: "Pending",
+            statuss: ['Pending', 'Approved', 'Finished', 'Declined'],
             notification: null,
             showRescheduleModal: false,
 
@@ -729,16 +724,16 @@ export default {
                 "bg-yellow-400": this.status === "Reschedule",
             };
         },
-        // filterReservations() {
-        //   if (this.selectedStatus === 'all') {
-        //     this.filteredReservations = this.reservations; // Show all reservations
-        //   } else {
-        //     const selectedStatus = parseInt(this.selectedStatus);
-        //     this.filteredReservations = this.reservations.filter(
-        //       reservation => reservation.reservation_details.Status === selectedStatus
-        //     );
-        //   }
-        // },
+        filterReservations() {
+          if (this.selectedStatus === 'all') {
+            this.filteredReservations = this.reservations; // Show all reservations
+          } else {
+            const selectedStatus = parseInt(this.selectedStatus);
+            this.filteredReservations = this.reservations.filter(
+              reservation => reservation.reservation_details.Status === selectedStatus
+            );
+          }
+        },
     },
 };
 </script>

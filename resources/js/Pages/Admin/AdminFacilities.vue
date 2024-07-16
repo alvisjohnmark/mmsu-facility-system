@@ -25,7 +25,7 @@
                         Dashboard
                     </span>
                 </router-link>
-                <!-- <router-link
+                <router-link
                     to="/admin/admincalendar"
                     class="block px-4 py-2 text-gray-800 router-link"
                     active-class="active-link"
@@ -39,7 +39,7 @@
                         />
                         Calendar
                     </span>
-                </router-link> -->
+                </router-link>
                 <router-link
                     to="/admin/adminreservation"
                     class="block px-4 py-2 text-gray-800 router-link"
@@ -70,8 +70,8 @@
                         />
                         Facilities
                         <lord-icon
-                            @click="toggleExpand"
-                            v-if="!expanded"
+                            @click="adminF.toggleExpand"
+                            v-if="!adminF.expanded"
                             src="https://cdn.lordicon.com/xcrjfuzb.json"
                             trigger="hover"
                             state="hover-arrow-down-2"
@@ -79,8 +79,8 @@
                             class="w-5 h-5 ml-24"
                         />
                         <lord-icon
-                            @click="toggleExpand"
-                            v-if="expanded"
+                            @click="adminF.toggleExpand"
+                            v-if="adminF.expanded"
                             src="https://cdn.lordicon.com/ternnbni.json"
                             trigger="hover"
                             state="hover-arrow-up-2"
@@ -90,7 +90,7 @@
                     </span>
                 </router-link>
                 <router-link
-                    v-if="expanded"
+                    v-if="adminF.expanded"
                     to="/addfacilities"
                     class="px-4 py-2 text-gray-800 router-link"
                     active-class="active-link"
@@ -141,7 +141,7 @@
                     class="block px-4 py-2 text-gray-800 router-link"
                     active-class="active-link"
                 >
-                    <button @click="logout" class="flex items-center">
+                    <button @click="adminF.logout" class="flex items-center">
                         <lord-icon
                             src="https://cdn.lordicon.com/whtfgdfm.json"
                             trigger="hover"
@@ -197,7 +197,7 @@
                             </lord-icon>
                             Add Facilities
                         </router-link>
-                    </div>
+                    </div>  
                 </div>
             </div>
             <!--Sub Nav End-->
@@ -231,9 +231,9 @@
                         style="font-family: Sans-serif"
                     >
                         <div
-                            v-for="facility in facilities"
+                            v-for="facility in adminF.facilities"
                             :key="facility.id"
-                            class="rounded-xl shadow-md px-2 "
+                            class="rounded-xl shadow-md px-2"
                             style="background-color: #0c4b05"
                         >
                             <div class="p-4 bg-gray-100">
@@ -255,7 +255,7 @@
                                     {{ facility.shortdes }}
                                 </p>
                                 <p class="text-gray-600 text-xl mt-4">
-                                    <span ><strong>Location:</strong></span>
+                                    <span><strong>Location:</strong></span>
                                     {{ facility.location }}
                                 </p>
                                 <p class="text-gray-600 text-xl mt-4">
@@ -267,8 +267,10 @@
                                     {{ facility.tags }}
                                 </p>
                                 <p class="text-gray-600 text-xl mt-4">
-                                    <span><strong>Vacancy Status:</strong></span>
-                                    {{ a[facility.availability] }}
+                                    <span
+                                        ><strong>Vacancy Status:</strong></span
+                                    >
+                                    {{ adminF.a[facility.availability] }}
                                 </p>
                                 <p class="text-gray-600 text-xl mt-4">
                                     <span><strong>Price:</strong></span>
@@ -286,7 +288,7 @@
 
                                 <div class="mt-4 flex justify-end">
                                     <button
-                                        @click="editFacility(facility.id)"
+                                        @click="adminF.editFacility(facility.id)"
                                         class="bg-green-800 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
                                     >
                                         Edit
@@ -303,7 +305,7 @@
                                         Pictures
                                     </router-link>
                                     <button
-                                        @click="deleteFacility(facility.id)"
+                                        @click="adminF.deleteFacility(facility.id)"
                                         class="bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
                                     >
                                         Delete
@@ -318,94 +320,15 @@
         <!--Content End-->
     </div>
 </template>
-<script>
-import axios from "axios";
-// const availability = ["Unavailable", "Available"]
+<script setup>
+import { adminFacilities } from "./PagesAdminStore/adminFacilities.js";
+import { onMounted } from "vue";
+const adminF = adminFacilities();
 
-export default {
-    data() {
-        return {
-            expanded: false,
-            isSidePanelOpen: true,
-            showModal: false,
-            facilities: [],
-            a: ["Unavailable", "Available"]
-        };
-    },
-    methods: {
-        toggleExpand() {
-            this.expanded = !this.expanded;
-        },
-        toggleSidePanel() {
-            this.isSidePanelOpen = !this.isSidePanelOpen;
-        },
-        openModal() {
-            this.showModal = true;
-        },
-        closeModal() {
-            this.showModal = false;
-        },
-
-        logout() {
-            axios.post("/logout").then(({ data }) => {
-                this.checkUser();
-            });
-        },
-
-        checkUser() {
-            axios.post("/check-user").then(({ data }) => {
-                if (!data) {
-                    this.$router.push("/admin/login");
-                    window.location.reload(); // Reload the page after redirecting to login
-                }
-            });
-        },
-
-        loadAdminFacilities() {
-            axios
-                .get("/load-admin-facilities") // Send a GET request to fetch admin-specific facilities
-                .then(({ data }) => {
-                    this.facilities = data;
-                })
-                .catch((error) => {
-                    console.error("Error loading admin facilities:", error);
-                });
-        },
-
-        deleteFacility(id) {
-            if (confirm("Are you sure?")) {
-                axios
-                    .post("/delete-facility/" + id)
-                    .then(({ data }) => {
-                        if (data) {
-                            alert("Success");
-                            this.loadAdminFacilities(); // Reload facilities after deletion
-                        } else {
-                            alert("Error");
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error deleting facility:", error);
-                        alert("Error deleting facility");
-                    });
-            } else {
-                alert("Cancelled");
-            }
-        },
-
-        editFacility(id) {
-            // Here, you can implement the logic to edit a facility
-            // For example, you can navigate to an edit facility page using router-link
-            // Replace '/edit-facility/' with your desired route for editing a facility
-            this.$router.push("/EditFacilities/" + id);
-        },
-    },
-
-    mounted() {
-        this.loadAdminFacilities();
-        this.checkUser();
-    },
-};
+onMounted(() => {
+    adminF.loadAdminFacilities();
+    adminF.checkUser();
+});
 </script>
 
 <style lang=""></style>

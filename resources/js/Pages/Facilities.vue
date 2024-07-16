@@ -184,6 +184,7 @@ export default {
                 .get("/list-facilities")
                 .then((response) => {
                     this.facilities = response.data;
+                    console.log(this.facilities);
 
                     // Fetch images for each facility
                     this.facilities.forEach((facility) => {
@@ -192,14 +193,14 @@ export default {
                             .then((imagesResponse) => {
                                 // Assign fetched images to each facility
                                 facility.images = imagesResponse.data;
-                                console.log(facility);
+                                console.log(facility)
                             })
                             .catch((error) => {
                                 console.error(
                                     "Error fetching images for facility:",
                                     error
                                 );
-                            });s
+                            });
                     });
                 })
                 .catch((error) => {

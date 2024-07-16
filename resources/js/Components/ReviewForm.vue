@@ -6,7 +6,7 @@
       <div class="form-group">
         <label for="name">Name  <span :style="{ opacity: isOptional ? '0.6' : '1' }">(Optional)</span> :</label>
        
-        <input type="text" id="name" v-model="name">
+        <input type="text" id="name" v-model="name" class="border-b-4">
       </div>
 
       <div class="form-group">
@@ -114,7 +114,8 @@ export default {
   color: orange;
 }
 .review-form {
-  /* Add your form styling here */
+  /* display: flex;
+  justify-content: centerx  ; */
 }
 .form-group {
   margin-bottom: 20px;

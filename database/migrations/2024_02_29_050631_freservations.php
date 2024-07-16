@@ -22,8 +22,8 @@ class Freservations extends Migration
             $table->integer('participants');
             $table->date('eventDateFrom');
             $table->date('eventDateTo');
-            $table->date('startTime');
-            $table->date('endTime');
+            $table->time('startTime');
+            $table->time('endTime');
             $table->integer('total');
             $table->tinyInteger('status');
             $table->timestamps();

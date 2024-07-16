@@ -11,12 +11,13 @@
           alt="Background Image"
           class="w-full"
         />
-        <div class="absolute inset-0 flex items-center justify-center bg-opacity-70 bg-white">
+        <div class="absolute inset-0 flex items-center justify-center bg-opacity-70"
+          >
           <div class="text-center text-black p-4 md:p-8">
-            <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold">
+            <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold text-black">
               Welcome to MMSU Facility Reservation
             </h1>
-            <p class="text-base md:text-lg lg:text-xl mt-2">
+            <p class="text-base md:text-lg lg:text-xl mt-2 text-black">
               Your gateway to hassle-free facility booking and event planning.
               Explore our diverse range of facilities, check rates, and reserve
               with ease. Let's make your events unforgettable
@@ -138,5 +139,9 @@ export default {
     padding: 16px;
   }
   /* Add more responsive styles as needed */
+}
+
+.div-1 {
+  background-image: url("/../../images/mmsupic.jpg");
 }
 </style>

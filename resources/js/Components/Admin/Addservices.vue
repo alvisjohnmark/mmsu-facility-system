@@ -1,217 +1,432 @@
 <template>
-    <div class="p-4">
-        <!-- Go Back button -->
-        <button
-            @click="goBack"
-            class="bg-gray-500 text-white px-4 ml-8 py-2 rounded mt-4"
-        >
-            Go Back
-        </button>
-
-        <div class="flex justify-center ">
-            <form
-                @submit.prevent="addService"
-                class="flex flex-col space-y-4 border p-8 rounded-xl bg-gray-100 shadow-md"
-                style="font-family: Advantage"
-            >   
-                <div class="flex flex-row space-x-4">
-                    <div class="w-1/3">
-                        <label
-                            class="block text-gray-700 font-semibold text-xl"
-                            for="service-name"
-                            >Service Name</label
-                        >
-                        <input
-                            v-model="serviceName"
-                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
-                            type="text"
-                            id="service-name"
-                            name="service-name"
-                            placeholder="Enter service name"
-                            required
-                        />
-                    </div>
-                    <div class="w-1/3">
-                        <label
-                            class="block text-gray-700 font-semibold text-xl"
-                            for="service-type"
-                            >Type</label
-                        >
-                        <select
-                            v-model="serviceType"
-                            id="service-type"
-                            class="w-full text-lg px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
-                        >
-                            <option value="audiovisual">Audiovisual</option>
-                            <option value="food">Food</option>
-                            <option value="tech">Tech</option>
-                            <option value="seating">Seating</option>
-                            <!-- Add other types as needed -->
-                        </select>
-                    </div>
-                    <div class="w-1/3">
-                        <label
-                            class="block text-gray-700 font-semibold text-xl"
-                            for="service-fee"
-                            >Fee</label
-                        >
-                        <input
-                            v-model="serviceFee"
-                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
-                            type="number"
-                            id="service-fee"
-                            name="service-fee"
-                            placeholder="Enter service fee"
-                            required
-                        />
-                    </div>
-                    <div class="w-1/3">
-                        <label
-                            class="block text-gray-700 font-semibold text-xl"
-                            for="service-unit"
-                            >Unit</label
-                        >
-                        <input
-                            v-model="serviceUnit"
-                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
-                            type="text"
-                            id="service-unit"
-                            name="service-unit"
-                            placeholder="Enter unit"
-                        />
-                    </div>
-                    <div class="w-2/3">
-                        <label
-                            class="block text-gray-700 font-semibold text-xl"
-                            for="service-note"
-                            >Note</label
-                        >
-                        <textarea
-                            v-model="serviceNote"
-                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
-                            id="service-note"
-                            name="service-note"
-                            rows="3"
-                            placeholder="Enter note"
-                        ></textarea>
-                    </div>
-                </div>
-
-                <div class="flex flex-row space-x-4">
-                    <div class="w-1/2">
-                        <label
-                            class="block text-gray-700 font-semibold text-xl"
-                            for="month-from"
-                            >Month From</label
-                        >
-                        <select
-                            v-model="monthFrom"
-                            id="month-from"
-                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
-                        >
-                            <option
-                                v-for="(month, index) in months"
-                                :key="index"
-                                :value="index + 1"
-                            >
-                                {{ month }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="w-1/2">
-                        <label
-                            class="block text-gray-700 font-semibold text-xl"
-                            for="month-to"
-                            >Month To</label
-                        >
-                        <select
-                            v-model="monthTo"
-                            id="month-to"
-                            class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
-                        >
-                            <option
-                                v-for="(month, index) in months"
-                                :key="index"
-                                :value="index + 1"
-                            >
-                                {{ month }}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-                <button
-                    type="submit"
-                    class="bg-green-800  text-xl hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 mx-auto transition ease-in-out delay-200 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+    <div class="flex flex-row w-full">
+        <!--Main-->
+        <aside class="sticky top-0 shadow-lg shadow-gray-500 w-80 h-screen">
+            <!--Side Nav-->
+            <div class="flex items-center justify-center h-14 mt-20">
+                <img src="\src\mmsu-logo.png" alt="Logo" class="w-36" />
+            </div>
+            <div class="grid grid-cols-1 mt-20 divide-y divide-dashed">
+                <router-link
+                    to="/admin/admindashboard"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    trigger="hover"
+                    active-class="active-link"
                 >
-                    Confirm
-                </button>
-            </form>
-        </div>
+                    <span class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wmwqvixz.json"
+                            trigger="morph"
+                            state="morph-home-3"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Dashboard
+                    </span>
+                </router-link>
+                <router-link
+                    to="/admin/admincalendar"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <span class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wmlleaaf.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Calendar
+                    </span>
+                </router-link>
+                <router-link
+                    to="/admin/adminreservation"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <span class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/omiqopzf.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Reservation
+                    </span>
+                </router-link>
+                <router-link
+                    to="/admin/adminfacilities"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <span class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/ipnwkgdy.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Facilities
+                    </span>
+                </router-link>
+                <router-link
+                    to="/admin/adminservices"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <span class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/iazmohzf.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Services
+                    </span>
+                </router-link>
+                <router-link
+                    to="/admin/adminreport"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <span class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/yrbmguoo.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Report
+                    </span>
+                </router-link>
+                <router-link
+                    to="/admin/login"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
+                    <button @click="logout" class="flex items-center">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/whtfgdfm.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
+                        Logout
+                    </button>
+                </router-link>
+            </div>
+        </aside>
+        <!--Side Bav End-->
 
-        <!-- Display the result in a table -->
-        <div class="m-8">
-            <table class="w-full border-collapse">
-                <thead>
-                    <tr class="bg-gray-200">
-                        <th class="px-4 py-2 text-center border">
-                            Service Name
-                        </th>
-                        <th class="px-4 py-2 text-center border">Type</th>
-                        <th class="px-4 py-2 text-center border">Fee</th>
-                        <th class="px-4 py-2 text-center border">Unit</th>
-                        <th class="px-4 py-2 text-center border">Note</th>
-                        <th class="px-4 py-2 text-center border">Month From</th>
-                        <th class="px-4 py-2 text-center border">Month To</th>
-                        <th class="px-4 py-2 text-center border">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                        v-for="(service, index) in services"
-                        :key="index"
-                        :class="index % 2 === 0 ? 'bg-gray-100' : 'bg-white'"
-                    >
-                        <td class="px-4 py-2 text-center border">
-                            <span class="text-lg">{{ service.service_name }}</span>
-                        </td>
-                        <td class="px-4 py-2 text-center border">
-                            <span class="text-lg">{{ service.type }}</span>
-                        </td>
-                        <td class="px-4 py-2 text-center border">
-                            <span class="text-lg">{{ service.fee }}</span>
-                        </td>
-                        <td class="px-4 py-2 text-center border">
-                            <span class="text-lg">{{ service.unit }}</span>
-                        </td>
-                        <td class="px-4 py-2 text-center border">
-                            <span class="text-lg">{{ service.note }}</span>
-                        </td>
-                        <td class="px-4 py-2 text-center border">
-                            <span class="text-lg">{{ getMonthName(service.monthFrom) }}</span>
-                        </td>
-                        <td class="px-4 py-2 text-center border">
-                            <span class="text-lg">{{ getMonthName(service.monthTo) }}</span>
-                        </td>
-                        <td class="px-4 py-2 text-center border">
-                            <button
-                                @click="deleteService(index)"
-                                class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded text-lg "
-                            >
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!-- Button to add services to the table -->
-            <button
-                @click="saveServices"
-                class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded  text-lg mt-4"
+        <div class="bg-gray-100 min-h-screen w-full" style="font-family: arial">
+            <!--Content-->
+            <div
+                class="grid grid-cols-1 flex flex-row border-b-4 border-yellow-400"
             >
-                Save Changes
+                <!--Sub Nav-->
+                <div
+                    class="shadow-md h-20 flex justify-between"
+                    style="background-color: #0c4b05"
+                >
+                    <span
+                        class="flex items-center text-white text-xl font-semibold ml-4"
+                    >
+                        <lord-icon
+                            src="https://cdn.lordicon.com/iazmohzf.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-10 h-10 mr-2"
+                        />
+                        Services
+                    </span>
+                    <div
+                        class="flex justify-end px-4 py-2 text-xl"
+                        style="font-family: Advantage"
+                    >
+                        <router-link
+                            to="/Addservices"
+                            class="flex items-center text-white text-lg font-semibold mr-7 router-link"
+                            active-class="active-link"
+                        >
+                            <lord-icon
+                                src="https://cdn.lordicon.com/hqymfzvj.json"
+                                trigger="hover"
+                                colors="primary:#ffffff"
+                                style="width: 10; height: 10"
+                                class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 mr-2"
+                            >
+                            </lord-icon>
+                            Add Services
+                        </router-link>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 flex flex-row">
+                <!--Sub Nav 1-->
+                <div
+                    class="bg-shadow-gray-300 shadow-md h-16 flex justify-start"
+                    style="background-color: #c0c0c0"
+                >
+                    <span
+                        class="flex items-center text-black text-lg italic font-semibold ml-4"
+                        style="font-family: Advantage"
+                    >
+                        <img
+                            src="\src\mmsu-logo.png"
+                            alt="Logo"
+                            class="w-12 h-10 mr-2"
+                        />
+                        Mariano Marcos State University Services
+                    </span>
+                </div>
+            </div>
+            <!-- Go Back button -->
+            <button
+                @click="goBack"
+                class="bg-gray-500 text-white px-4 ml-8 py-2 rounded mt-4"
+            >
+                Go Back
             </button>
+            <div class="flex justify-center bg-gray-100">
+                <div class="flex justify-center ">
+                    <form
+                        @submit.prevent="addService"
+                        class="flex flex-col space-y-4 border p-12 rounded-lg shadow-md w-full"
+                        style="font-family: Advantage"
+                    >
+                        <div class="flex flex-col">
+                            <div class="">
+                                <label
+                                    class="block text-gray-700 font-semibold text-xl"
+                                    for="service-name"
+                                    >Service Name</label
+                                >
+                                <input
+                                    v-model="serviceName"
+                                    class="w-full text-lg py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                    type="text"
+                                    id="service-name"
+                                    name="service-name"
+                                    placeholder="Enter service name"
+                                    required
+                                />
+                            </div>
+                            <div class="">
+                                <label
+                                    class="block text-gray-700 font-semibold text-xl"
+                                    for="service-type"
+                                    >Type</label
+                                >
+                                <select
+                                    v-model="serviceType"
+                                    id="service-type"
+                                    class="w-full text-lg py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                >
+                                    <option value="audiovisual">
+                                        Audiovisual
+                                    </option>
+                                    <option value="food">Food</option>
+                                    <option value="tech">Tech</option>
+                                    <option value="seating">Seating</option>
+                                    <!-- Add other types as needed -->
+                                </select>
+                            </div>
+                            <div class="">
+                                <label
+                                    class="block text-gray-700 font-semibold text-xl"
+                                    for="service-fee"
+                                    >Fee</label
+                                >
+                                <input
+                                    v-model="serviceFee"
+                                    class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                    type="number"
+                                    id="service-fee"
+                                    name="service-fee"
+                                    placeholder="Enter service fee"
+                                    required
+                                />
+                            </div>
+                            <div class="">
+                                <label
+                                    class="block text-gray-700 font-semibold text-xl"
+                                    for="service-unit"
+                                    >Unit</label
+                                >
+                                <input
+                                    v-model="serviceUnit"
+                                    class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                    type="text"
+                                    id="service-unit"
+                                    name="service-unit"
+                                    placeholder="Enter unit"
+                                />
+                            </div>
+                            <div class="w-2/3">
+                                <label
+                                    class="block text-gray-700 font-semibold text-xl"
+                                    for="service-note"
+                                    >Note</label
+                                >
+                                <textarea
+                                    v-model="serviceNote"
+                                    class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                    id="service-note"
+                                    name="service-note"
+                                    rows="3"
+                                    placeholder="Enter note"
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row space-x-4">
+                            <div class="w-1/2">
+                                <label
+                                    class="block text-gray-700 font-semibold text-xl"
+                                    for="month-from"
+                                    >Month From</label
+                                >
+                                <select
+                                    v-model="monthFrom"
+                                    id="month-from"
+                                    class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                >
+                                    <option
+                                        v-for="(month, index) in months"
+                                        :key="index"
+                                        :value="index + 1"
+                                    >
+                                        {{ month }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="w-1/2">
+                                <label
+                                    class="block text-gray-700 font-semibold text-xl"
+                                    for="month-to"
+                                    >Month To</label
+                                >
+                                <select
+                                    v-model="monthTo"
+                                    id="month-to"
+                                    class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                >
+                                    <option
+                                        v-for="(month, index) in months"
+                                        :key="index"
+                                        :value="index + 1"
+                                    >
+                                        {{ month }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="bg-green-800 text-xl hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 mx-auto transition ease-in-out delay-200 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                        >
+                            Confirm
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Display the result in a table -->
+                <div class="m-8 ">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-gray-200">
+                                <th class="px-4 py-2 text-center border">
+                                    Service Name
+                                </th>
+                                <th class="px-4 py-2 text-center border">
+                                    Type
+                                </th>
+                                <th class="px-4 py-2 text-center border">
+                                    Fee
+                                </th>
+                                <th class="px-4 py-2 text-center border">
+                                    Unit
+                                </th>
+                                <th class="px-4 py-2 text-center border">
+                                    Note
+                                </th>
+                                <th class="px-4 py-2 text-center border">
+                                    Month From
+                                </th>
+                                <th class="px-4 py-2 text-center border">
+                                    Month To
+                                </th>
+                                <th class="px-4 py-2 text-center border">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                v-for="(service, index) in services"
+                                :key="index"
+                                :class="
+                                    index % 2 === 0 ? 'bg-gray-100' : 'bg-white'
+                                "
+                            >
+                                <td class="px-4 py-2 text-center border">
+                                    <span class="text-lg">{{
+                                        service.service_name
+                                    }}</span>
+                                </td>
+                                <td class="px-4 py-2 text-center border">
+                                    <span class="text-lg">{{
+                                        service.type
+                                    }}</span>
+                                </td>
+                                <td class="px-4 py-2 text-center border">
+                                    <span class="text-lg">{{
+                                        service.fee
+                                    }}</span>
+                                </td>
+                                <td class="px-4 py-2 text-center border">
+                                    <span class="text-lg">{{
+                                        service.unit
+                                    }}</span>
+                                </td>
+                                <td class="px-4 py-2 text-center border">
+                                    <span class="text-lg">{{
+                                        service.note
+                                    }}</span>
+                                </td>
+                                <td class="px-4 py-2 text-center border">
+                                    <span class="text-lg">{{
+                                        getMonthName(service.monthFrom)
+                                    }}</span>
+                                </td>
+                                <td class="px-4 py-2 text-center border">
+                                    <span class="text-lg">{{
+                                        getMonthName(service.monthTo)
+                                    }}</span>
+                                </td>
+                                <td class="px-4 py-2 text-center border">
+                                    <button
+                                        @click="deleteService(index)"
+                                        class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded text-lg"
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Button to add services to the table -->
+                    <button
+                        @click="saveServices"
+                        class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded text-lg mt-4"
+                    >
+                        Save Changes
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </template>

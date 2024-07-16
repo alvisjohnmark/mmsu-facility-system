@@ -8,7 +8,6 @@ export const adminDashboard = defineStore("adminDashboard", {
             reservationCount: 0,
             facilityCount: 0,
             adminName: "",
-            
         };
     },
     actions: {

@@ -26,9 +26,12 @@ class ReservationController extends Controller
         $reservation->eventDateFrom = $request->eventDateFrom;
         $reservation->eventDateTo = $request->eventDateTo;
         $reservation->startTime = $request->startTime;
-        $reservation->endTime = $request->endTime;
+        $reservation->endTime =$request->endTime;
         $reservation->total = $request->totalPrice;
+        $reservation->status = $request->reservation_status;
   
+        // $reservation->endTime = date('h:i:s', strtotime($request->endTime));
+
         $reservation->save();
 
         Session::put('reservation_id', $reservation['id']);
@@ -92,7 +95,7 @@ class ReservationController extends Controller
         $adminId = Auth::id();
 
         // Retrieve reservations
-        $reservationsData = Reservation::select('*', DB::raw("reservations.id as reservation_id"))
+        $reservationsData = Reservation::select('*', DB::raw("freservations.id as reservation_id"))
             ->join('facility', 'freservations.facility_id', '=', 'facility.id')
             ->join('clients', 'freservations.client_id', '=', 'clients.id')
             ->where('admin_id', $adminId)

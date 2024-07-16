@@ -102,7 +102,7 @@
                     >
                         Book Now
                     </router-link>
-                </div>
+                </div>  
             </div>
 
             <!-- Main content -->
@@ -112,15 +112,16 @@
                     <!-- Modal content -->
                     <div class="modal">
                         <!-- Close button -->
+                    
+
+                        <!-- ReviewForm component -->
+                        <ReviewForm/>
                         <button
                             @click="closeReviewForm"
                             class="bg-red-500 text-white font-bold py-2 px-4 rounded mb-4"
                         >
-                            Close
+                          X
                         </button>
-
-                        <!-- ReviewForm component -->
-                        <ReviewForm />
                     </div>
                 </div>
 
@@ -441,7 +442,7 @@ export default {
 }
 
 /* Styling for the modal overlay */
-.modal-overlay {
+/* .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -452,15 +453,18 @@ export default {
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
-}
+} */
 
 /* Styles for the modal */
 .modal {
-    max-width: 568px;
+    /* max-width: 568px;
     min-width: 368px;
-    max-height: 560px;
-    width: 90%;
-    height: 90%;
+    max-height: 560px; */
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 50%;
+    height: 50%;
     background-color: white;
     padding: 20px;
     border-radius: 5px;

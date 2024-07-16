@@ -170,7 +170,7 @@
 
             <!-- Modal -->
             <!-- Modal -->
-            <div v-if="showModal && selectedReservation" class="modal">
+            <div v-if="showModal && selectedReservation" class="modal" >
                 <div class="modal-content">
                     <!-- Display the selectedReservation fields -->
                     <div
@@ -347,7 +347,7 @@
                     <button @click="closeModal" class="modal-close-btn">
                         Close
                     </button>
-                </div>
+                </div>  
             </div>
         </div>
         <!-- Content End -->

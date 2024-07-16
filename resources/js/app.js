@@ -1,4 +1,3 @@
-
 require('./bootstrap');
 
 import App from './Components/App.vue';
@@ -12,7 +11,7 @@ import EditServices from './Components/Admin/EditServices.vue';
 import ReviewForm from './Components/ReviewForm.vue';
 import { createApp, markRaw } from 'vue/dist/vue.esm-bundler.js';
 import { createRouter, createWebHistory, useRoute } from 'vue-router'
-import router from "./router"
+import router from './router';
 import { createPinia } from 'pinia';
 import '../css/app.css';
 import VueSplide from '@splidejs/vue-splide';

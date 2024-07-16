@@ -24,7 +24,7 @@
                         Dashboard
                     </span>
                 </router-link>
-                <!-- <router-link
+                <router-link
                     to="/admin/admincalendar"
                     class="block px-4 py-2 text-gray-800 router-link"
                     active-class="active-link"
@@ -38,7 +38,7 @@
                         />
                         Calendar
                     </span>
-                </router-link> -->
+                </router-link>
                 <router-link
                     to="/admin/adminreservation"
                     class="block px-4 py-2 text-gray-800 router-link"
@@ -258,52 +258,27 @@
                         </div>
                     </div>
                 </div>
-                <div
-                    class="row-span-4 shadow-lg shadow-gray-500 w-[500px] h-[500px] mt-12 overflow-y-auto rounded-md"
-                >
-                    <div class="grid grid-cols-1 flex-row">
-                        <div
-                            class="shadow-md h-12 flex justify-start"
-                            style="background-color: #0c4b05"
-                        >
-                            <span
-                                class="flex items-center text-white text-lg font-normal ml-4"
-                            >
-                                <lord-icon
-                                    src="https://cdn.lordicon.com/lznlxwtc.json"
-                                    trigger="hover"
-                                    state="loop-bell"
-                                    colors="primary:#ffffff"
-                                    class="w-10 h-10 mr-2"
-                                />
-                                Upcoming Events
-                            </span>
-                        </div>
-                    </div>
-                </div>
+                <div class="row-span-2 col-span-2 shadow-lg shadow-gray-500 w-[350px] mt-10 overflow-y-auto rounded-md">
+                      <div class="grid grid-cols-1  flex-row">
+                          <div class="shadow-md h-12 flex justify-start" style="background-color: #0C4B05">
+                              <span class="flex items-center text-white text-lg font-normal ml-4">
+                              <lord-icon src="https://cdn.lordicon.com/lznlxwtc.json" trigger="hover" colors="primary:#ffffff" class="w-10 h-10 mr-2" />
+                              Upcoming Events
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row-span-2 col-span-2 shadow-lg shadow-gray-500 mt-5 w-[350px] overflow-y-auto rounded-md">
+                      <div class="grid grid-cols-1 flex-row">
+                          <div class="shadow-md h-12 flex justify-start" style="background-color: #0C4B05">
+                              <span class="flex items-center text-white text-lg font-normal ml-4">
+                              <lord-icon src="https://cdn.lordicon.com/xljvqlng.json" trigger="hover" colors="primary:#ffffff" class="w-10 h-10 mr-2" />
+                              Tasks?
+                              </span>
+                          </div>
+                      </div>
+                  </div>  
                 <!-- <div
-                    class="row-span-2 col-span-2 shadow-lg shadow-gray-500 mt-5 w-[350px] overflow-y-auto rounded-md"
-                >
-                    <div class="grid grid-cols-1 flex-row">
-                        <div
-                            class="shadow-md h-12 flex justify-start"
-                            style="background-color: #0c4b05"
-                        >
-                            <span
-                                class="flex items-center text-white text-lg font-normal ml-4"
-                            >
-                                <lord-icon
-                                    src="https://cdn.lordicon.com/xljvqlng.json"
-                                    trigger="hover"
-                                    colors="primary:#ffffff"
-                                    class="w-10 h-10 mr-2"
-                                />
-                                Tasks????
-                            </span>
-                        </div>
-                    </div>
-                </div> -->
-                <div
                     class="row-span-2 col-span-2 shadow-lg shadow-gray-500 w-[350px] mt-12 overflow-y-auto rounded-md"
                 >
                     <div class="grid grid-cols-1 flex-row">
@@ -311,7 +286,7 @@
                             <VCalendar expanded />
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <!--Content End-->

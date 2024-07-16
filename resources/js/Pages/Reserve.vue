@@ -284,7 +284,7 @@
                                 />
                             </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td><label for="university_id">University ID:</label></td>
                             <td>
                                 <input
@@ -293,7 +293,7 @@
                                     v-model="contactInfo.university_id"
                                 />
                             </td>
-                        </tr>
+                        </tr> -->
 
 
                         <tr>
@@ -570,6 +570,8 @@ export default {
             endTime: "",
             event_name: "",
             participants: 0,
+            totalPrice: 0,
+            reservation_status: 0,
             currentMonthFacilityPrice: "Not available",
             estimatedTotal: 0, //or etoy ti maisave ty estimation na haha
             
@@ -726,6 +728,8 @@ export default {
                     event_name: this.event_name,
                     participants: this.participants,
                     totalPrice: this.totalPrice,
+                    reservation_status: this.reservation_status
+                    // estimatedTotal: this.estimatedTotal
                 };
 
                 const reservationResponse = await axios.post(

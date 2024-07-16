@@ -25,12 +25,12 @@
                         Dashboard
                     </span>
                 </router-link>
-                <!-- <router-link to="/admin/admincalendar" class="block px-4 py-2 text-gray-800 router-link" active-class="active-link">
+                <router-link to="/admin/admincalendar" class="block px-4 py-2 text-gray-800 router-link" active-class="active-link">
                     <span class="flex items-center">
                         <lord-icon src="https://cdn.lordicon.com/wmlleaaf.json" trigger="hover" colors="primary:#ffffff" class="w-7 h-7 mr-2" />
                         Calendar
                     </span>
-                </router-link>  -->
+                </router-link> 
 
                 <!--Updated by jhn-->
                 <router-link

@@ -25,7 +25,7 @@
                         Dashboard
                     </span>
                 </router-link>
-                <!-- <router-link
+                <router-link
                     to="/admin/admincalendar"
                     class="block px-4 py-2 text-gray-800 router-link"
                     active-class="active-link"
@@ -39,7 +39,7 @@
                         />
                         Calendar
                     </span>
-                </router-link> -->
+                </router-link>
                 <router-link
                     to="/admin/adminreservation"
                     class="block px-4 py-2 text-gray-800 router-link"

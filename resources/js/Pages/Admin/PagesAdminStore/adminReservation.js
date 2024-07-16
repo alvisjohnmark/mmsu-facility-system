@@ -1,5 +1,9 @@
 import { defineStore } from "pinia";
-// import reservationModal from "../ReservationModal.vue"; /fix path
+import reservationModal from "/../../ReservationModal.vue";
+import Swal from "sweetalert2";
+import flatpickr from "flatpickr"; // Import Flatpickr library
+import "flatpickr/dist/flatpickr.min.css"; // Import Flatpickr styles
+
 
 export const adminReservation = defineStore("adminReservation", {
     state: () => {
