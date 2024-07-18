@@ -6,7 +6,7 @@
       <div class="form-group">
         <label for="name">Name  <span :style="{ opacity: isOptional ? '0.6' : '1' }">(Optional)</span> :</label>
        
-        <input type="text" id="name" v-model="name" class="border-b-4">
+        <input type="text" id="name" v-model="review_name" class="border-b-4">
       </div>
 
       <div class="form-group">
@@ -46,7 +46,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      name: '',
+      review_name: '',
       rating: null,
       comment: '',
       hoverValue: 0,
@@ -71,7 +71,7 @@ export default {
     },
     submitReview() {
       const data = {
-        name: this.name,
+        review_name: this.review_name,
         rating: this.rating,
         comment: this.comment,
         facility_id: this.$route.params.facilityId,
@@ -88,7 +88,7 @@ export default {
         });
     },
     clearForm() {
-      this.name = '';
+      this.review_name = '';
       this.rating = null;
       this.comment = '';
       this.hoverValue = 0;
@@ -113,10 +113,10 @@ export default {
 .selected {
   color: orange;
 }
-.review-form {
-  /* display: flex;
-  justify-content: centerx  ; */
-}
+ /* .review-form {
+  display: flex;
+  justify-content: centerx  ; 
+} */
 .form-group {
   margin-bottom: 20px;
 }

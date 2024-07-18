@@ -160,7 +160,7 @@
                     <!-- Review card -->
                     <!-- Name and Date -->
                     <div class="review-header flex items-center">
-                        <p class="font-bold">{{ review.reviewName }} |</p>
+                        <p class="font-bold">{{ review.review_name }} |</p>
                         <!-- Display date -->
                         <p class="text-sm italic ml-1">
                             {{ v.formatDate(review.created_at) }}
@@ -332,15 +332,20 @@ onMounted(() => {
     /* max-width: 568px;
     min-width: 368px;
     max-height: 560px; */
+    border-radius: 50px;
+    margin-left: 25%;
+    margin-top: 5%;
     display: flex;
     justify-content: center;
     align-items: start;
     width: 50%;
-    height: 50%;
+    height: 75%;
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     overflow-y: auto;
+    border: 5px solid #0c4b05;
+    
 }
 
 /* Button styles */

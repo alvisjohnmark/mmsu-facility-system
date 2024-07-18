@@ -19,7 +19,7 @@ class ReviewController extends Controller
 
         // Create a new review instance and save it to the database
         $review = new Review();
-        $review->reviewName = $validatedData['name'];
+        $review->review_name = $validatedData['review_name'];
         $review->rating = $validatedData['rating'];
         $review->comment = $validatedData['comment'];
         $review->facility_id = $validatedData['facility_id'];
