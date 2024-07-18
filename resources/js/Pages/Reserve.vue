@@ -919,7 +919,7 @@ export default {
     computed: {
         totalCostOfServices() {
             // Calculate totalCostOfServices based on other data properties
-            // e sum na lang dagity naiavail ta price HAHAHA
+            // e sum na lang dagity naiavail ta price HAHAHA, kano a
             return this.getSelectedServices().reduce(
                 (total, service) => total + service.total_price,
                 0

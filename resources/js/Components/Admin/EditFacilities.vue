@@ -1,12 +1,12 @@
 <template>
-    <div class="container flex justify-center items-center h-screen mt-4">
+    <div class="container flex justify-center items-center">
         <div class="background" style="font-family: Advantage">
             <div class="flex items-center">
                 <!-- Step 1: Facility Information -->
 
                 <div
                     v-if="step === 1"
-                    class="bg-gray-100 shadow-gray-400 ml-[350px] p-6 rounded-lg shadow-lg mt-[20px] w-[1000px] mb-8"
+                    class="bg-gray-100 shadow-gray-400 p-6 rounded-lg shadow-lg mt-[55px] w-[1000px] relative mt-2"
                 >
                     <!-- Your existing content -->
                     <div
@@ -122,7 +122,7 @@
                                 id="facility-capacity"
                                 name="facility-capacity"
                                 placeholder="Enter Availability (1,0)"
-                                required    
+                                required
                             />
                         </div>
 
@@ -165,7 +165,7 @@
                 <!-- Step 2: Add Prices -->
                 <div
                     v-if="step === 2"
-                    class="bg-gray-100 shadow-gray-400 ml-[350px] p-6 rounded-lg shadow-lg mt-[55px] w-[1000px] relative mt-2"
+                    class="bg-gray-100 shadow-gray-400 p-6 rounded-lg shadow-lg mt-[55px] w-[1000px] relative mt-2"
                 >
                     <div
                         class="grid grid-cols-1 flex flex-row border-b-4 border-yellow-400"
@@ -379,7 +379,7 @@
                 <!-- Step 3: Confirmation Dialog -->
                 <div
                     v-if="step === 3"
-                    class="bg-gray-100 shadow-gray-400 ml-[350px] p-6 rounded-lg shadow-lg mt-[50px] w-[1000px] relative"
+                    class="bg-gray-100 shadow-gray-400 p-6 rounded-lg shadow-lg mt-[50px] w-[1000px] relative"
                 >
                     <div
                         class="grid grid-cols-1 flex flex-row border-b-4 border-yellow-400"
@@ -427,18 +427,20 @@
                             </li>
                         </ul>
                     </div>
-                    <button
-                        @click="saveData"
-                        class="bg-green-500 text-white px-4 py-2 rounded mr-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
-                    >
-                        Confirm
-                    </button>
-                    <button
-                        @click="prevStep(2)"
-                        class="bg-red-500 text-white px-4 py-2 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
-                    >
-                        Cancel
-                    </button>
+                    <div class="flex justify-end">
+                        <button
+                            @click="saveData"
+                            class="bg-green-500 text-white px-4 py-2 rounded mr-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                        >
+                            Confirm
+                        </button>
+                        <button
+                            @click="prevStep(2)"
+                            class="bg-red-500 text-white px-4 py-2 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                        >
+                            Cancel
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -590,8 +592,8 @@ export default {
             this.monthFrom = "";
             this.monthTo = "";
             this.hours = "";
-            this.availability= "";
-           (this.timePeriod = ""), (this.prices = []);
+            this.availability = "";
+            (this.timePeriod = ""), (this.prices = []);
             this.$router.push("/admin/adminfacilities");
         },
 

@@ -7,16 +7,16 @@
         <div>
             <div class="headerdiv">
                 <!-- Header content -->
-                <h1 class="text-3xl font-serif ml-4">
+                <h1 class="text-3xl ml-10 font-serif">
                     MMSU FACILITY RESERVATION
                 </h1>
-                <h4 class="text-xl italic text-gray-700 font-serif ml-4">
+                <h4 class="text-xl italic text-gray-700 ml-10 font-serif">
                     Facilities
                 </h4>
             </div>
             <div class="quote">
                 <!-- Quote content -->
-                <h2 class="text-xl font-serif ml-4">
+                <h2 class="text-xl ml-10 font-serif">
                     "Explore Our Diverse Facilities"
                 </h2>
             </div>
@@ -24,7 +24,7 @@
             <div class="shadow-md bg-gray-100 shadow-gray-500">
                 <div class="p-4">
                     <div
-                        v-for="(facility, index) in availableFacilities"
+                        v-for="(facility, index) in f.availableFacilities"
                         :key="index"
                         class="bg-white rounded-lg shadow-md mb-4"
                     >
@@ -49,7 +49,7 @@
                                 <!-- Facility Details -->
                                 <div class="px-4 py-2">
                                     <h3 class="text-xl font-semibold mt-4">
-                                        <p class="text-lg"><span class="font-bold">Facility: </span> {{ facility.facility_name }}</p>
+                                        <p class="text-lg"> {{ facility.facility_name }}</p>
                                     </h3>
                                     <p class="text-sm text-gray-600 mb-2">
                                         <p class="text-lg"><span class="font-bold">Location: </span> {{ facility.location }}</p>
@@ -57,13 +57,10 @@
                                     <div class="tags-container mb-4">
                                         <!-- Display tags here -->
                                         <div
-                                            v-for="(
-                                                tag, tagIndex
-                                            ) in facility.tagsArray"
-                                            :key="tagIndex"
+                                            
                                             class="tag-box inline-block bg-gray-200 rounded-md text-xs px-2 py-1 mr-2 mb-2 hover:bg-gray-300"
                                         >
-                                        <p class="text-lg">{{tag}}</p>
+                                        <p class="text-lg">{{facility.tags}}</p>
                                         </div>
                                     </div>
                                     <p class="text-sm text-gray-600 mb-2">
@@ -128,7 +125,7 @@
                                             }"
                                             class="bg-green-800 hover:bg-yellow-400 text-white font-semibold py-3 px-6 rounded transition duration-300 text-xs"
                                             active-class="active-link"
-                                            @click="selectFacility(facility.id)"
+                                            @click="f.selectFacility(facility.id)"
                                         >
                                             Book Now
                                         </router-link>
@@ -144,78 +141,20 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import Footer from "../Components/Footer.vue";
 import Navbar from "../Components/Navbar.vue";
 import axios from "axios";
 import ImageCarousel from "../Components/ImageCarousel.vue";
+import { facilitiesStore } from "./PageStores/facilitiesStore.js";
+import { onMounted } from "vue";
+const f = facilitiesStore();
 
-export default {
-    components: {
-        Navbar,
-        Footer,
-        ImageCarousel,
-    },
-    data() {
-        return {
-            facilities: [],
-            tagsArray: [],
-            selectedFacilityId: null,
-            availability: "",
-        };
-    },
-    computed: {
-        // Separating available and unavailable facilities
-        availableFacilities() {
-            return this.facilities.filter(
-                (facility) => facility.availability === 1
-            );
-        },
-        unavailableFacilities() {
-            return this.facilities.filter(
-                (facility) => facility.availability === 0
-            );
-        },
-    },
+onMounted(() => {
+    f.getFacilities()
+    // f.fetchData()
+});
 
-    methods: {
-        getFacilities() {
-            axios
-                .get("/list-facilities")
-                .then((response) => {
-                    this.facilities = response.data;
-                    console.log(this.facilities);
-
-                    // Fetch images for each facility
-                    this.facilities.forEach((facility) => {
-                        axios
-                            .post("/imageList", { facilityId: facility.id })
-                            .then((imagesResponse) => {
-                                // Assign fetched images to each facility
-                                facility.images = imagesResponse.data;
-                                console.log(facility)
-                            })
-                            .catch((error) => {
-                                console.error(
-                                    "Error fetching images for facility:",
-                                    error
-                                );
-                            });
-                    });
-                })
-                .catch((error) => {
-                    console.error("Error fetching facilities:", error);
-                });
-        },
-
-        selectFacility(facilityId) {
-            this.selectedFacilityId = facilityId;
-        },
-    },
-    mounted() {
-        this.getFacilities();
-    },
-};
 </script>
 
 <style scoped>

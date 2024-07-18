@@ -1,16 +1,11 @@
 import { defineStore } from "pinia";
-import reservationModal from "/../../ReservationModal.vue";
 import Swal from "sweetalert2";
 import flatpickr from "flatpickr"; // Import Flatpickr library
 import "flatpickr/dist/flatpickr.min.css"; // Import Flatpickr styles
 
-
 export const adminReservation = defineStore("adminReservation", {
     state: () => {
         return {
-            // components: {
-            //     reservationModal,  /fix 
-            // },
             expanded: false,
             reservations: [],
             isSidePanelOpen: true,
@@ -18,7 +13,7 @@ export const adminReservation = defineStore("adminReservation", {
             selectedReservation: [],
             selectedStatus: "all",
             filteredReservations: [],
-            status: "Pending",
+            statuss: ["Pending", "Approved", "Finished", "Declined"],
             notification: null,
             showRescheduleModal: false,
 
@@ -265,6 +260,17 @@ export const adminReservation = defineStore("adminReservation", {
                 "bg-red-500": this.status === "Cancelled",
                 "bg-yellow-400": this.status === "Reschedule",
             };
+        },
+        filterReservations() {
+            if (this.selectedStatus === "all") {
+                this.filteredReservations = this.reservations; // Show all reservations
+            } else {
+                const selected = parseInt(this.selectedStatus);
+                this.filteredReservations = this.reservations.filter(
+                    (reservation) =>
+                        reservation.reservation_details.status === selected
+                );
+            }
         },
     },
 });

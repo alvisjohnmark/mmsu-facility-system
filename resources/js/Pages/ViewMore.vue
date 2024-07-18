@@ -5,7 +5,7 @@
         </header>
         <div class="headerdiv">
             <button
-                @click.prevent="goBack"
+                @click.prevent="v.goBack"
                 class="mr-2 bg-green-700 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded ml-10"
             >
                 Go Back
@@ -13,7 +13,7 @@
         </div>
 
         <div>
-            <FacilityImageSlider :src="facilityImages" option="full" />
+            <FacilityImageSlider :src="v.facilityImages" option="full" />
         </div>
 
         <div class="bg-white shadow-gray-500">
@@ -21,13 +21,13 @@
                 <!-- First Row -->
                 <div class="bg-light-gray rounded-lg shadow-md p-4">
                     <h1 class="font-bold font-serif text-2xl uppercase">
-                        {{ facility.facility_name }}
+                        {{ v.facility.facility_name }}
                     </h1>
                     <p class="italic mb-4">
-                        <b>LOCATION: </b>{{ facility.location }}
+                        <b>LOCATION: </b>{{ v.facility.location }}
                     </p>
                     <div class="description-text">
-                        <p class="mb-4" v-html="facility.description"></p>
+                        <p class="mb-4" v-html="v.facility.description"></p>
                     </div>
                 </div>
 
@@ -41,11 +41,9 @@
                         <div class="tags-section">
                             <div class="tags-container text-l">
                                 <div
-                                    v-for="(tag, index) in facility.tagsArray"
-                                    :key="index"
                                     class="tag-box"
                                 >
-                                    {{ tag }}
+                                    {{ v.facility.tags }}
                                 </div>
                             </div>
                         </div>
@@ -56,13 +54,13 @@
                         class="w-1/2 bg-white rounded-lg shadow-md p-4 shadow-around"
                     >
                         <h3 class="font-bold mb-2">
-                            Capacity: {{ facility.capacity }}
+                            Capacity: {{ v.facility.capacity }}
                         </h3>
 
                         <h3 class="font-bold mb-2">Rental Price</h3>
                         <div class="price-container">
                             <div
-                                v-for="price in facilityPrices"
+                                v-for="price in v.facilityPrices"
                                 :key="price.id"
                                 class="price"
                             >
@@ -93,34 +91,33 @@
                     <router-link
                         :to="{
                             name: 'reservenow',
-                            params: { facilityId: facility.id },
+                            params: { facilityId: v.facility.id },
                         }"
                         class="bg-green-800 hover:bg-yellow-400 text-white font-semibold py-4 px-9 rounded transition duration-300 text-sm"
                         active-class="active-link"
-                        @click="selectFacility(facility.id)"
+                        @click="v.selectFacility(v.facility.id)"
                         style="font-size: 14px"
                     >
                         Book Now
                     </router-link>
-                </div>  
+                </div>
             </div>
 
             <!-- Main content -->
             <div class="main-content mx-10">
                 <!-- Modal overlay -->
-                <div class="modal-overlay" v-if="showReviewForm">
+                <div class="modal-overlay" v-if="v.showReviewForm">
                     <!-- Modal content -->
                     <div class="modal">
                         <!-- Close button -->
-                    
 
                         <!-- ReviewForm component -->
-                        <ReviewForm/>
+                        <ReviewForm />
                         <button
-                            @click="closeReviewForm"
+                            @click="v.closeReviewForm"
                             class="bg-red-500 text-white font-bold py-2 px-4 rounded mb-4"
                         >
-                          X
+                            X
                         </button>
                     </div>
                 </div>
@@ -131,8 +128,8 @@
                 >
                     <h2 class="mb-4">FACILITY REVIEWS</h2>
                     <button
-                        @click="showReviewForm = true"
-                        v-if="!showReviewForm"
+                        @click="v.showReviewForm = true"
+                        v-if="!v.showReviewForm"
                         class="bg-yellow-500 text-white font-bold py-2 px-4 rounded"
                     >
                         Write a Review
@@ -142,13 +139,13 @@
                 <!-- Display the average rating -->
                 <div class="flex items-center mb-4">
                     <i
-                        v-for="i in averageRating"
+                        v-for="i in v.averageRating"
                         :key="i"
                         class="fas fa-star filled"
                     ></i>
                     <span class="ml-2"
-                        >{{ averageRating.toFixed(1) }} stars ({{
-                            reviews.length
+                        >{{ v.averageRating.toFixed(1) }} stars ({{
+                            v.reviews.length
                         }}
                         reviews)</span
                     >
@@ -156,7 +153,7 @@
 
                 <!-- Display top 5 reviews -->
                 <div
-                    v-for="(review, index) in displayedReviews"
+                    v-for="(review, index) in v.displayedReviews"
                     :key="review.id"
                     class="review-card mb-4"
                 >
@@ -166,7 +163,7 @@
                         <p class="font-bold">{{ review.reviewName }} |</p>
                         <!-- Display date -->
                         <p class="text-sm italic ml-1">
-                            {{ formatDate(review.created_at) }}
+                            {{ v.formatDate(review.created_at) }}
                         </p>
                     </div>
 
@@ -185,8 +182,8 @@
 
                 <!-- View More button -->
                 <button
-                    v-if="!showReviewForm && reviews.length > 4"
-                    @click="toggleReviews"
+                    v-if="!v.showReviewForm && v.reviews.length > 4"
+                    @click="v.toggleReviews"
                     class="bg-blue-500 text-white font-bold py-2 px-4 rounded mb-4"
                 >
                     {{ showAll ? "View Less" : "View More" }}
@@ -200,145 +197,20 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Footer from "../Components/Footer.vue";
 import Navbar from "../Components/Navbar.vue";
 import ReviewForm from "../Components/ReviewForm.vue";
-import axios from "axios";
 import FacilityImageSlider from "../Components/FacilityImageSlider.vue";
+import { onMounted } from "vue";
+import { viewmoreStore } from "./PageStores/viewmoreStore.js";
+const v = viewmoreStore()
 
-export default {
-    components: {
-        Navbar,
-        Footer,
-        ReviewForm,
-        FacilityImageSlider,
-    },
-    data() {
-        return {
-            facility: {},
-            facilityPrices: [],
-            tagsArray: [],
-            reviews: [],
-            displayedReviews: [],
-
-            facilityImages: [], // Example data declaration
-            images: [],
-
-            overallRating: 0,
-            showReviewForm: false,
-            averageRating: null,
-            totalReviews: 0,
-            showAll: false,
-        };
-    },
-
-    methods: {
-        goBack() {
-            // Redirect to /facilities when canceled
-            this.$router.push("/facilities");
-        },
-        loadFacilityDetails() {
-            const facilityId = this.$route.params.facilityId;
-
-            // Get the current month (assuming it's 1-12)
-            const currentMonth = new Date().getMonth() + 1;
-
-            axios.get(`/list-facilities/${facilityId}`).then((response) => {
-                this.facility = response.data;
-            });
-
-            axios.get(`/facility-pricing/${facilityId}`).then((response) => {
-                // Filter prices for the current month
-                const prices = response.data;
-                this.facilityPrices = prices.filter((price) => {
-                    return (
-                        (price.monthFrom <= currentMonth &&
-                            price.monthTo >= currentMonth) ||
-                        price.monthTo === null // Include prices that are indefinite
-                    );
-                });
-            });
-        },
-
-        fetchFacilityReviews() {
-            const facilityId = this.$route.params.facilityId;
-            axios
-                .get(`/facility-reviews/${facilityId}`)
-                .then((response) => {
-                    this.reviews = response.data.reviews;
-                    this.reviews = response.data.reviews;
-                    // Compute overall rating based on fetched reviews
-                    this.computeOverallRating();
-                    // Show top 5 reviews initially
-                    this.displayedReviews = this.reviews.slice(0, 5);
-                })
-                .catch((error) => {
-                    console.error("Error fetching reviews:", error);
-                });
-        },
-
-        computeOverallRating() {
-            // Calculate overall rating based on fetched reviews
-            if (this.reviews.length > 0) {
-                const sum = this.reviews.reduce(
-                    (acc, review) => acc + review.rating,
-                    0
-                );
-                this.overallRating = Math.round(sum / this.reviews.length);
-            }
-        },
-
-        showAllReviews() {
-            // Show all reviews when View More button is clicked
-            this.displayedReviews = this.reviews;
-        },
-
-        closeReviewForm() {
-            this.showReviewForm = false;
-        },
-
-        toggleReviews() {
-            // Change the displayed reviews based on the flag
-            if (this.showAll) {
-                this.displayedReviews = this.reviews.slice(0, 5); // Show only the top 5 reviews
-            } else {
-                this.displayedReviews = this.reviews; // Show all reviews
-            }
-            // Toggle the flag value
-            this.showAll = !this.showAll;
-        },
-
-        formatDate(timestamp) {
-            const date = new Date(timestamp);
-            // Format the date as needed (e.g., MM/DD/YYYY)
-            const formattedDate = `${
-                date.getMonth() + 1
-            }/${date.getDate()}/${date.getFullYear()}`;
-            return formattedDate;
-        },
-    },
-    computed: {
-        averageRating() {
-            if (this.reviews.length === 0) {
-                return 0; // Return default value when there are no reviews
-            }
-
-            const sum = this.reviews.reduce(
-                (acc, review) => acc + review.rating,
-                0
-            );
-            return Math.round(sum / this.reviews.length);
-        },
-    },
-
-    mounted() {
-        // Fetch  when the component is mounted
-        this.loadFacilityDetails();
-        this.fetchFacilityReviews();
-    },
-};
+onMounted(() => {
+    v.loadFacilityDetails();
+    v.fetchFacilityReviews();
+});
 </script>
 
 <style scoped>

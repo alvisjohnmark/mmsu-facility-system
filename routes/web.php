@@ -105,13 +105,11 @@ Route::post('/facility-prices/{id}', [FacilitiesController::class, 'getFacilityP
 Route::post('/save-edited-facility/{id}', [FacilitiesController::class, 'updateFacility']);
 Route::post('/save-edited-facility-prices/{id}', [FacilitiesController::class, 'saveEditedFacilityPrices']);
 
-
 // Route for fetching pending reservations
 Route::get('/pending-reservations', [ReservationController::class, 'getPendingReservations']);
 
 // Route for fetching approved reservations
 Route::get('/approved-reservations', [ReservationController::class, 'getApprovedReservations']);
-
 
 Route::get('/adminname', [AdminFacility::class, 'getAdminName']);
 

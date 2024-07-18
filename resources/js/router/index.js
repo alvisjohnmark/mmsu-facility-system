@@ -168,7 +168,7 @@ const router = createRouter({
       path: '/admin/approved',//new
       name: 'approved',
       component: Approved,
-      meta: {
+      meta: { 
         requiresAuth: true, // This route requires authentication
       },
     },

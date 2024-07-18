@@ -25,12 +25,21 @@
                         Dashboard
                     </span>
                 </router-link>
-                <router-link to="/admin/admincalendar" class="block px-4 py-2 text-gray-800 router-link" active-class="active-link">
+                <router-link
+                    to="/admin/admincalendar"
+                    class="block px-4 py-2 text-gray-800 router-link"
+                    active-class="active-link"
+                >
                     <span class="flex items-center">
-                        <lord-icon src="https://cdn.lordicon.com/wmlleaaf.json" trigger="hover" colors="primary:#ffffff" class="w-7 h-7 mr-2" />
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wmlleaaf.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            class="w-7 h-7 mr-2"
+                        />
                         Calendar
                     </span>
-                </router-link> 
+                </router-link>
 
                 <!--Updated by jhn-->
                 <router-link
@@ -69,7 +78,7 @@
 
                 <router-link
                     v-if="expanded"
-                    to="/admin/approved"
+                    to="/admin/approvedreservation"
                     class="px-4 py-2 text-gray-800 router-link"
                     active-class="active-link"
                 >
@@ -134,7 +143,7 @@
                     class="block px-4 py-2 text-gray-800 router-link"
                     active-class="active-link"
                 >
-                    <button @click="logout" class="flex items-center">
+                    <span @click="logout" class="flex items-center">
                         <lord-icon
                             src="https://cdn.lordicon.com/whtfgdfm.json"
                             trigger="hover"
@@ -142,7 +151,7 @@
                             class="w-7 h-7 mr-2"
                         />
                         Logout
-                    </button>
+                    </span>
                 </router-link>
             </div>
         </aside>
@@ -166,7 +175,7 @@
                         style="font-family: Advantage"
                     >
                         <img
-                            src="\Icons\Reservation.gif"
+                            src="/../../icons/Reservation.gif"
                             alt="Reservation Icon"
                             class="w-10 h-10 mr-2"
                         />
@@ -251,7 +260,7 @@
                                         {
                                             'bg-yellow-300':
                                                 reservation &&
-                                                reservation.Status === 1,
+                                                reservation.status === 1,
                                         },
                                         'hover:bg-white-200',
                                         'text-black',
@@ -259,13 +268,10 @@
                                         'py-2',
                                         'px-4',
                                         'rounded-md',
+                                        'text-center',
                                     ]"
                                 >
-                                    {{
-                                        getStatusText(
-                                            reservation && reservation.Status
-                                        )
-                                    }}
+                                    {{ statuss[reservation.status] }}
                                 </div>
                             </td>
                             <td class="px-6 py-4">
@@ -276,9 +282,7 @@
                                     View
                                 </button>
                             </td>
-                            <td class="px-6 py-4">
-                                <!-- ADD THE TOTAL HERE -->
-                            </td>
+                            <td class="px-6 py-4">total/delete?</td>
                         </tr>
                     </tbody>
                 </table>
@@ -290,17 +294,20 @@
                 v-if="showModal"
                 :reservation="selectedReservation"
                 @close="closeModal"
-            ></reservationModal>
-
-            <div></div>
+            >
+            </reservationModal>
         </div>
     </div>
 </template>
-
+<!-- <template>
+    <div>
+        hello world
+    </div>  
+</template> -->
 <script>
 import axios from "axios";
 import reservationModal from "../ReservationModal.vue";
-import approvedModal from '../ApprovedModal.vue';
+import approvedModal from "../ApprovedModal.vue";
 import Swal from "sweetalert2";
 
 export default {
@@ -310,11 +317,11 @@ export default {
     },
     data() {
         return {
-            expanded: true,
+            expanded: false,
 
             reservations: [], // All reservations
             approvedReservations: [], // Separate variable for approved reservations
-
+            statuss: ["Pending", "Approved", "Finished", "Declined"],
             isSidePanelOpen: true,
             showModal: false,
             selectedReservation: [],

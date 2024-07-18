@@ -78,7 +78,7 @@
 
                 <router-link
                     v-if="expanded"
-                    to="/admin/approved"
+                    to="/admin/approvedreservation"
                     class="px-4 py-2 text-gray-800 router-link"
                     active-class="active-link"
                 >
@@ -250,25 +250,25 @@
                         >
                             <th
                                 scope="row"
-                                class="px-6 py-4 font-medium text-black dark:text-black"
+                                class="px-6 py-4 font-medium text-black dark:text-black text-base"
                             >
                                 {{
                                     reservation.reservation_details
                                         .facility_name
                                 }}
                             </th>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-base">
                                 {{ reservation.reservation_details.event_name }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-base">
                                 {{ reservation.reservation_details.purpose }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-base">
                                 {{
                                     reservation.reservation_details.participants
                                 }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-base">
                                 {{
                                     reservation.reservation_details
                                         .eventDateFrom
@@ -278,32 +278,32 @@
                                     reservation.reservation_details.eventDateTo
                                 }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-base">
                                 {{ reservation.reservation_details.startTime }}
                                 to {{ reservation.reservation_details.endTime }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-base">
                                 <div
                                     :class="[
                                         {
-                                            'bg-blue-200':
+                                            'bg-blue-200 text-center':
                                                 reservation &&
                                                 reservation.reservation_details &&
                                                 reservation.reservation_details
-                                                    .Status === 0,
-                                            'bg-yellow-300':
+                                                    .status === 0,
+                                            'bg-yellow-300 text-center':
                                                 reservation &&
                                                 reservation.reservation_details &&
                                                 reservation.reservation_details
-                                                    .Status === 1,
-                                            'bg-red-300':
+                                                    .status === 1,
+                                            'bg-red-300 text-center':
                                                 reservation &&
                                                 reservation.reservation_details &&
                                                 (reservation.reservation_details
-                                                    .Status === 2 ||
+                                                    .status === 2 ||
                                                     reservation
                                                         .reservation_details
-                                                        .Status === 3),
+                                                        .status === 3),
                                         },
                                         'hover:bg-white-200',
                                         'text-black',
@@ -314,7 +314,10 @@
                                     ]"
                                 >
                                     {{
-                                        statuss[reservation.reservation_details.status]
+                                        statuss[
+                                            reservation.reservation_details
+                                                .status
+                                        ]
                                     }}
                                     {{
                                         console.log(
@@ -376,7 +379,9 @@
                 v-if="showModal"
                 :reservation="selectedReservation"
                 @close="closeModal"
-            ></reservationModal>
+            >
+            </reservationModal>
+
             <div v-if="showRescheduleModal" class="modal">
                 <div class="modal-content reschedule-content">
                     <h2>Reschedule Reservation</h2>
@@ -451,8 +456,7 @@
     </div>
 </template>
 
-<script>
-import axios from "axios";
+<script >
 import reservationModal from "../ReservationModal.vue";
 import Swal from "sweetalert2";
 import flatpickr from "flatpickr"; // Import Flatpickr library
@@ -471,7 +475,7 @@ export default {
             selectedReservation: [],
             selectedStatus: "all",
             filteredReservations: [],
-            statuss: ['Pending', 'Approved', 'Finished', 'Declined'],
+            statuss: ["Pending", "Approved", "Finished", "Declined"],
             notification: null,
             showRescheduleModal: false,
 
@@ -725,14 +729,15 @@ export default {
             };
         },
         filterReservations() {
-          if (this.selectedStatus === 'all') {
-            this.filteredReservations = this.reservations; // Show all reservations
-          } else {
-            const selectedStatus = parseInt(this.selectedStatus);
-            this.filteredReservations = this.reservations.filter(
-              reservation => reservation.reservation_details.Status === selectedStatus
-            );
-          }
+            if (this.selectedStatus === "all") {
+                this.filteredReservations = this.reservations; // Show all reservations
+            } else {
+                const selected = parseInt(this.selectedStatus);
+                this.filteredReservations = this.reservations.filter(
+                    (reservation) =>
+                        reservation.reservation_details.status === selected
+                );
+            }
         },
     },
 };

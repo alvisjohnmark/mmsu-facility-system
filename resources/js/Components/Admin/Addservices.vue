@@ -1,124 +1,8 @@
 <template>
     <div class="flex flex-row w-full">
         <!--Main-->
-        <aside class="sticky top-0 shadow-lg shadow-gray-500 w-80 h-screen">
-            <!--Side Nav-->
-            <div class="flex items-center justify-center h-14 mt-20">
-                <img src="\src\mmsu-logo.png" alt="Logo" class="w-36" />
-            </div>
-            <div class="grid grid-cols-1 mt-20 divide-y divide-dashed">
-                <router-link
-                    to="/admin/admindashboard"
-                    class="block px-4 py-2 text-gray-800 router-link"
-                    trigger="hover"
-                    active-class="active-link"
-                >
-                    <span class="flex items-center">
-                        <lord-icon
-                            src="https://cdn.lordicon.com/wmwqvixz.json"
-                            trigger="morph"
-                            state="morph-home-3"
-                            colors="primary:#ffffff"
-                            class="w-7 h-7 mr-2"
-                        />
-                        Dashboard
-                    </span>
-                </router-link>
-                <router-link
-                    to="/admin/admincalendar"
-                    class="block px-4 py-2 text-gray-800 router-link"
-                    active-class="active-link"
-                >
-                    <span class="flex items-center">
-                        <lord-icon
-                            src="https://cdn.lordicon.com/wmlleaaf.json"
-                            trigger="hover"
-                            colors="primary:#ffffff"
-                            class="w-7 h-7 mr-2"
-                        />
-                        Calendar
-                    </span>
-                </router-link>
-                <router-link
-                    to="/admin/adminreservation"
-                    class="block px-4 py-2 text-gray-800 router-link"
-                    active-class="active-link"
-                >
-                    <span class="flex items-center">
-                        <lord-icon
-                            src="https://cdn.lordicon.com/omiqopzf.json"
-                            trigger="hover"
-                            colors="primary:#ffffff"
-                            class="w-7 h-7 mr-2"
-                        />
-                        Reservation
-                    </span>
-                </router-link>
-                <router-link
-                    to="/admin/adminfacilities"
-                    class="block px-4 py-2 text-gray-800 router-link"
-                    active-class="active-link"
-                >
-                    <span class="flex items-center">
-                        <lord-icon
-                            src="https://cdn.lordicon.com/ipnwkgdy.json"
-                            trigger="hover"
-                            colors="primary:#ffffff"
-                            class="w-7 h-7 mr-2"
-                        />
-                        Facilities
-                    </span>
-                </router-link>
-                <router-link
-                    to="/admin/adminservices"
-                    class="block px-4 py-2 text-gray-800 router-link"
-                    active-class="active-link"
-                >
-                    <span class="flex items-center">
-                        <lord-icon
-                            src="https://cdn.lordicon.com/iazmohzf.json"
-                            trigger="hover"
-                            colors="primary:#ffffff"
-                            class="w-7 h-7 mr-2"
-                        />
-                        Services
-                    </span>
-                </router-link>
-                <router-link
-                    to="/admin/adminreport"
-                    class="block px-4 py-2 text-gray-800 router-link"
-                    active-class="active-link"
-                >
-                    <span class="flex items-center">
-                        <lord-icon
-                            src="https://cdn.lordicon.com/yrbmguoo.json"
-                            trigger="hover"
-                            colors="primary:#ffffff"
-                            class="w-7 h-7 mr-2"
-                        />
-                        Report
-                    </span>
-                </router-link>
-                <router-link
-                    to="/admin/login"
-                    class="block px-4 py-2 text-gray-800 router-link"
-                    active-class="active-link"
-                >
-                    <button @click="logout" class="flex items-center">
-                        <lord-icon
-                            src="https://cdn.lordicon.com/whtfgdfm.json"
-                            trigger="hover"
-                            colors="primary:#ffffff"
-                            class="w-7 h-7 mr-2"
-                        />
-                        Logout
-                    </button>
-                </router-link>
-            </div>
-        </aside>
-        <!--Side Bav End-->
 
-        <div class="bg-gray-100 min-h-screen w-full" style="font-family: arial">
+        <div class="bg-gray-100 w-full" style="font-family: arial">
             <!--Content-->
             <div
                 class="grid grid-cols-1 flex flex-row border-b-4 border-yellow-400"
@@ -129,7 +13,7 @@
                     style="background-color: #0c4b05"
                 >
                     <span
-                        class="flex items-center text-white text-xl font-semibold ml-4"
+                        class="flex items-center text-white font-semibold ml-4"
                     >
                         <lord-icon
                             src="https://cdn.lordicon.com/iazmohzf.json"
@@ -140,12 +24,12 @@
                         Services
                     </span>
                     <div
-                        class="flex justify-end px-4 py-2 text-xl"
+                        class="flex justify-end px-4 py-2"
                         style="font-family: Advantage"
                     >
-                        <router-link
+                        <!-- <router-link
                             to="/Addservices"
-                            class="flex items-center text-white text-lg font-semibold mr-7 router-link"
+                            class="flex items-center text-white  font-semibold mr-7 router-link"
                             active-class="active-link"
                         >
                             <lord-icon
@@ -157,7 +41,7 @@
                             >
                             </lord-icon>
                             Add Services
-                        </router-link>
+                        </router-link> -->
                     </div>
                 </div>
             </div>
@@ -169,7 +53,7 @@
                     style="background-color: #c0c0c0"
                 >
                     <span
-                        class="flex items-center text-black text-lg italic font-semibold ml-4"
+                        class="flex items-center text-black italic font-semibold ml-4"
                         style="font-family: Advantage"
                     >
                         <img
@@ -184,44 +68,43 @@
             <!-- Go Back button -->
             <button
                 @click="goBack"
-                class="bg-gray-500 text-white px-4 ml-8 py-2 rounded mt-4"
+                class="bg-gray-500 text-white px-4 m-8 py-2 rounded mt-4"
             >
                 Go Back
             </button>
-            <div class="flex justify-center bg-gray-100">
-                <div class="flex justify-center ">
+            <div class="bg-gray-100 ">
+                <div class="flex justify-center marg">
                     <form
                         @submit.prevent="addService"
                         class="flex flex-col space-y-4 border p-12 rounded-lg shadow-md w-full"
-                        style="font-family: Advantage"
+                        style="font-family: sans-serif"
                     >
                         <div class="flex flex-col">
                             <div class="">
                                 <label
-                                    class="block text-gray-700 font-semibold text-xl"
+                                    class="block text-gray-700 font-semibold"
                                     for="service-name"
                                     >Service Name</label
                                 >
                                 <input
                                     v-model="serviceName"
-                                    class="w-full text-lg py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                    class="w-full py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                     type="text"
                                     id="service-name"
                                     name="service-name"
-                                    placeholder="Enter service name"
                                     required
                                 />
                             </div>
                             <div class="">
                                 <label
-                                    class="block text-gray-700 font-semibold text-xl"
+                                    class="block text-gray-700 font-semibold"
                                     for="service-type"
                                     >Type</label
                                 >
                                 <select
                                     v-model="serviceType"
                                     id="service-type"
-                                    class="w-full text-lg py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                    class="w-full py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 >
                                     <option value="audiovisual">
                                         Audiovisual
@@ -234,47 +117,46 @@
                             </div>
                             <div class="">
                                 <label
-                                    class="block text-gray-700 font-semibold text-xl"
+                                    class="block text-gray-700 font-semibold"
                                     for="service-fee"
                                     >Fee</label
                                 >
                                 <input
                                     v-model="serviceFee"
-                                    class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                     type="number"
                                     id="service-fee"
                                     name="service-fee"
-                                    placeholder="Enter service fee"
                                     required
                                 />
                             </div>
                             <div class="">
                                 <label
-                                    class="block text-gray-700 font-semibold text-xl"
+                                    class="block text-gray-700 font-semibold"
                                     for="service-unit"
                                     >Unit</label
                                 >
                                 <input
                                     v-model="serviceUnit"
-                                    class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                     type="text"
                                     id="service-unit"
                                     name="service-unit"
-                                    placeholder="Enter unit"
                                 />
                             </div>
                             <div class="w-2/3">
                                 <label
-                                    class="block text-gray-700 font-semibold text-xl"
+                                    class="block text-gray-700 font-semibold"
                                     for="service-note"
                                     >Note</label
                                 >
                                 <textarea
                                     v-model="serviceNote"
-                                    class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                     id="service-note"
                                     name="service-note"
-                                    rows="3"
+                                    rows="5"
+                                    cols="50"
                                     placeholder="Enter note"
                                 ></textarea>
                             </div>
@@ -283,14 +165,14 @@
                         <div class="flex flex-row space-x-4">
                             <div class="w-1/2">
                                 <label
-                                    class="block text-gray-700 font-semibold text-xl"
+                                    class="block text-gray-700 font-semibold"
                                     for="month-from"
                                     >Month From</label
                                 >
                                 <select
                                     v-model="monthFrom"
                                     id="month-from"
-                                    class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 >
                                     <option
                                         v-for="(month, index) in months"
@@ -303,14 +185,14 @@
                             </div>
                             <div class="w-1/2">
                                 <label
-                                    class="block text-gray-700 font-semibold text-xl"
+                                    class="block text-gray-700 font-semibold"
                                     for="month-to"
                                     >Month To</label
                                 >
                                 <select
                                     v-model="monthTo"
                                     id="month-to"
-                                    class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 >
                                     <option
                                         v-for="(month, index) in months"
@@ -325,7 +207,7 @@
 
                         <button
                             type="submit"
-                            class="bg-green-800 text-xl hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 mx-auto transition ease-in-out delay-200 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                            class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 mx-auto transition ease-in-out delay-200 hover:-translate-y-1 hover:scale-110 hover:duration-300"
                         >
                             Confirm
                         </button>
@@ -333,7 +215,7 @@
                 </div>
 
                 <!-- Display the result in a table -->
-                <div class="m-8 ">
+                <div class="m-8">
                     <table class="w-full border-collapse">
                         <thead>
                             <tr class="bg-gray-200">
@@ -372,44 +254,36 @@
                                 "
                             >
                                 <td class="px-4 py-2 text-center border">
-                                    <span class="text-lg">{{
+                                    <span class="">{{
                                         service.service_name
                                     }}</span>
                                 </td>
                                 <td class="px-4 py-2 text-center border">
-                                    <span class="text-lg">{{
-                                        service.type
-                                    }}</span>
+                                    <span class="">{{ service.type }}</span>
                                 </td>
                                 <td class="px-4 py-2 text-center border">
-                                    <span class="text-lg">{{
-                                        service.fee
-                                    }}</span>
+                                    <span class="">{{ service.fee }}</span>
                                 </td>
                                 <td class="px-4 py-2 text-center border">
-                                    <span class="text-lg">{{
-                                        service.unit
-                                    }}</span>
+                                    <span class="">{{ service.unit }}</span>
                                 </td>
                                 <td class="px-4 py-2 text-center border">
-                                    <span class="text-lg">{{
-                                        service.note
-                                    }}</span>
+                                    <span class="">{{ service.note }}</span>
                                 </td>
                                 <td class="px-4 py-2 text-center border">
-                                    <span class="text-lg">{{
+                                    <span class="">{{
                                         getMonthName(service.monthFrom)
                                     }}</span>
                                 </td>
                                 <td class="px-4 py-2 text-center border">
-                                    <span class="text-lg">{{
+                                    <span class="">{{
                                         getMonthName(service.monthTo)
                                     }}</span>
                                 </td>
                                 <td class="px-4 py-2 text-center border">
                                     <button
                                         @click="deleteService(index)"
-                                        class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded text-lg"
+                                        class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded"
                                     >
                                         Delete
                                     </button>
@@ -421,7 +295,7 @@
                     <!-- Button to add services to the table -->
                     <button
                         @click="saveServices"
-                        class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded text-lg mt-4"
+                        class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded mt-4"
                     >
                         Save Changes
                     </button>
@@ -543,7 +417,6 @@ export default {
 .m-8 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -610,5 +483,10 @@ export default {
 .slide-main-enter,
 .slide-main-leave-to {
     margin-right: 0;
+}
+
+.marg{
+    margin-left: 200px;
+    margin-right: 200px
 }
 </style>

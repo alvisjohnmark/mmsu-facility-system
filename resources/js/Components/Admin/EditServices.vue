@@ -1,5 +1,69 @@
 <template>
-    <div class="flex justify-center items-center h-screen">
+    <div class="grid grid-cols-1 flex flex-row border-b-4 border-yellow-400">
+        <!--Sub Nav-->
+        <div
+            class="shadow-md h-20 flex justify-between"
+            style="background-color: #0c4b05"
+        >
+            <span class="flex items-center text-white font-semibold ml-4">
+                <lord-icon
+                    src="https://cdn.lordicon.com/iazmohzf.json"
+                    trigger="hover"
+                    colors="primary:#ffffff"
+                    class="w-10 h-10 mr-2"
+                />
+                Services
+            </span>
+            <div
+                class="flex justify-end px-4 py-2"
+                style="font-family: Advantage"
+            >
+                <!-- <router-link
+                            to="/Addservices"
+                            class="flex items-center text-white  font-semibold mr-7 router-link"
+                            active-class="active-link"
+                        >
+                            <lord-icon
+                                src="https://cdn.lordicon.com/hqymfzvj.json"
+                                trigger="hover"
+                                colors="primary:#ffffff"
+                                style="width: 10; height: 10"
+                                class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 mr-2"
+                            >
+                            </lord-icon>
+                            Add Services
+                        </router-link> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 flex flex-row">
+        <!--Sub Nav 1-->
+        <div
+            class="bg-shadow-gray-300 shadow-md h-16 flex justify-start"
+            style="background-color: #c0c0c0"
+        >
+            <span
+                class="flex items-center text-black italic font-semibold ml-4"
+                style="font-family: Advantage"
+            >
+                <img
+                    src="\src\mmsu-logo.png"
+                    alt="Logo"
+                    class="w-12 h-10 mr-2"
+                />
+                Mariano Marcos State University Services
+            </span>
+        </div>
+    </div>
+    <button
+        type="button"
+        @click="cancelEdit"
+        class="bg-gray-500 text-white px-4 m-8 py-2 rounded mt-4"
+    >
+        Go back
+    </button>
+    <div class="flex justify-center items-center mt-10">
         <form
             @submit.prevent="editService"
             class="flex flex-col space-y-4 border p-4 rounded bg-gray-100"
@@ -126,20 +190,12 @@
             </div>
 
             <!-- Buttons for Submit and Cancel -->
-            <div class="flex flex-row space-x-4">
+            <div class="flex flex-row justify-end space-x-4">
                 <button
                     type="submit"
                     class="px-4 py-2 bg-green-800 text-white rounded text-xl"
                 >
                     Save Changes
-                </button>
-
-                <button
-                    type="button"
-                    @click="cancelEdit"
-                    class="px-4 py-2 bg-gray-500 text-white rounded text-xl"
-                >
-                    Cancel
                 </button>
             </div>
         </form>
@@ -154,6 +210,20 @@ export default {
     data() {
         return {
             service: {}, // Initialize an empty service object to store the edited service data
+            months: [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
+            ],
         };
     },
     methods: {
@@ -168,7 +238,7 @@ export default {
                     console.error("Error fetching service data:", error);
                 });
         },
-        
+
         // getMonthName(monthValue) {
         //     return this.months[monthValue - 1];
         // },

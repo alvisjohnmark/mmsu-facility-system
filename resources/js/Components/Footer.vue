@@ -46,14 +46,7 @@
     </footer>
   </template>
   
-  <script>
-  import { RouterLink } from "vue-router"
-  
-  export default {
-      name: "Footer",
-  
-
-  };
+  <script setup>
   </script>
   
   <style scoped>

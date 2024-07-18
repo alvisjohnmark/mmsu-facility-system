@@ -1,36 +1,18 @@
 <template>
     <div>
-    <ckeditor :editor="editor" :config="editorConfig"></ckeditor>
+        <ckeditor :editor="ckedit.editor" :config="ckedit.editorConfig"></ckeditor>
     </div>
-  </template>
+</template>
 
 <script>
-    import ClassicEditor from '/js/ckeditor_custom';
+import ClassicEditor from '/js/ckeditor_custom';
+import {ckeditStore} from "./ComponentsAdminStore";
+import {omMounted} from "vue";
+const = ckedit = ckeditStore()
 
-   
-export default {
-  data(){
-    return{
-      editor: ClassicEditor,
-      editorData: 'ckeditor 5 for laravel and vuejs',
-      editorConfig:{
-        
-
-      }
-    }
-  }, 
-  mounted() {
-    this.editorData="";
-  },
-  methods:{
-    displayEditorResult(){
-      document.getElementById('resultingText').innerHTML = this.editorData;
-    },
-    emptyEditor(){
-      this.editorData='';
-    }
-  }
-};
+onMounted(() => {
+  ckedit.editorData=""
+})
 </script>
 <style>
 .ck-editor__editable_inline {

@@ -83,7 +83,7 @@
 </template>
 
 <script setup>
-import { loginAdmin } from "./ComponentsAdminStore/loginAdmin.js";
+import { loginAdmin } from "./ComponentsAdminStore/loginAdminStore.js";
 import { onMounted } from "vue";
 const login = loginAdmin();
 </script>

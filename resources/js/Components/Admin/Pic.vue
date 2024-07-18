@@ -244,10 +244,11 @@
 </template>
 
 <script>
+
 export default {
     data() {
         return {
-            facilityId: this.$route.params.facilityId,
+            facilityId: this.$route.params.facilityId, //jak mapagbalin store, etuy problem
             image_list: [],
             image: {
                 file: null,

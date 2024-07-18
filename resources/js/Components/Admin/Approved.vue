@@ -169,7 +169,7 @@
     </div>
   </template>
   <script setup>
-  import { approvedAdmin } from "./ComponentsAdminStore/approvedAdmin.js";
+  import { approvedAdmin } from "./ComponentsAdminStore/approvedStore.js";
   const approve = approvedAdmin();
   </script>
   

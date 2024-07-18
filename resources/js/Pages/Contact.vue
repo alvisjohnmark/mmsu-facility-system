@@ -22,7 +22,7 @@
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6153.270374637179!2d120.55082861184938!3d18.059708356058007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x338ec1eaaaacac43%3A0x204fbb814dc4172e!2sMariano%20Marcos%20State%20University!5e0!3m2!1sen!2sph!4v1697176800284!5m2!1sen!2sph"
           width="100%"
           height="1000"
-          style="border:0;"
+          style="border:0;" 
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
@@ -36,17 +36,11 @@
 </template>
 
 
-<script>
+<script setup>
 
 import Navbar from "../Components/Navbar.vue"
 import Footer from "../Components/Footer.vue"
 
-export default {
-    components:{
-        Navbar,
-        Footer
-    }
-}
 </script>
 
 

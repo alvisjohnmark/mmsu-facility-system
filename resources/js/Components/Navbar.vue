@@ -7,7 +7,7 @@
             <button
                 class="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
                 type="button"
-                @click="toggleMobileMenu"
+                @click="nav.toggleMobileMenu"
                 aria-label="Toggle navigation"
             >
                 <!-- Hamburger icon -->
@@ -46,24 +46,24 @@
 
                 <!-- Left navigation links using router-link -->
                 <ul
-                    class="list-style-none ml-auto mr-auto flex flex-col pl-0 lg:flex-row"
+                    class="flex flex-col list-style-none mx-auto lg:flex-row"
                     data-te-navbar-nav-ref
                 >
                     <li class="mb-4 lg:mb-0 lg:pr-10" data-te-nav-item-ref>
                         <!-- Facilities link -->
-                        <router-link to="/facilities" class="text-white"
+                        <router-link to="/facilities" class="text-white font-bold"
                             >Facilities</router-link
                         >
                     </li>
                     <li class="mb-4 lg:mb-0 lg:pr-10" data-te-nav-item-ref>
                         <!-- About link -->
-                        <router-link to="/about" class="text-white"
+                        <router-link to="/about" class="text-white font-bold"
                             >About</router-link
                         >
                     </li>
                     <li class="mb-4 lg:mb-0 lg:pr-10" data-te-nav-item-ref>
                         <!-- Contact link -->
-                        <router-link to="/contact" class="text-white"
+                        <router-link to="/contact" class="text-white font-bold"
                             >Contact</router-link
                         >
                     </li>
@@ -87,16 +87,16 @@
 
             <!-- Side navigation container -->
             <div
-                :class="{ 'lg:w-1/2': mobileMenuOpen }"
+                :class="{ 'lg:w-1/2': nav.mobileMenuOpen }"
                 class="bg-white fixed top-0 left-0 h-full overflow-auto z-50 lg:hidden shadow-md transition-all duration-300"
-                v-show="mobileMenuOpen"
+                v-show="nav.mobileMenuOpen"
             >
                 <!-- Side navigation content -->
                 <div class="p-8">
                     <!-- Adjust the padding as needed -->
                     <!-- Close button (to close the side navigation) -->
                     <button
-                        @click="toggleMobileMenu"
+                        @click="nav.toggleMobileMenu"
                         class="text-gray-600 hover:text-gray-800 focus:outline-none"
                     >
                         <!-- Close icon -->
@@ -145,26 +145,9 @@
     </nav>
 </template>
 
-<script>
-import { RouterLink } from "vue-router";
-
-export default {
-    name: "Navbar",
-
-    data() {
-        return {
-            mobileMenuOpen: false,
-        };
-    },
-    methods: {
-        toggleMobileMenu() {
-            this.mobileMenuOpen = !this.mobileMenuOpen;
-        },
-    },
-    components: {
-        RouterLink,
-    },
-};
+<script setup>
+import {navbarStore} from "./ComponentsStore/navbarStore.js"
+const nav = navbarStore();
 </script>
 
 <style scoped>

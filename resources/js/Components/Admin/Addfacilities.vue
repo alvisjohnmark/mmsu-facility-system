@@ -1,12 +1,11 @@
 <template>
-    <div class="container flex justify-center items-center h-screen">
+    <div class="container flex ">
         <div class="background" style="font-family: Advantage">
-            <div class="flex items-center">
+            <div class="flex items-center justify-center">
                 <!-- Step 1: Facility Information -->
-
                 <div
-                    v-if="step === 1"
-                    class="bg-gray-100 shadow-gray-400 ml-[350px] p-6 rounded-lg shadow-lg mt-[300px] w-[1000px] mb-8"
+                    v-if="add.step === 1"
+                    class="bg-gray-100 shadow-gray-400 p-6 rounded-lg shadow-lg mt-10 w-[1000px] mb-8"
                 >
                     <!-- Your existing content -->
                     <div
@@ -29,7 +28,7 @@
                                 >Facility Name</label
                             >
                             <input
-                                v-model="name"
+                                v-model="add.name"
                                 class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 type="text"
                                 id="facility-name"
@@ -46,7 +45,7 @@
                                 >Short Description</label
                             >
                             <input
-                                v-model="shortdes"
+                                v-model="add.shortdes"
                                 class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 type="text"
                                 id="shortdes"
@@ -63,9 +62,9 @@
                                 >Facility Description</label
                             >
                             <ckeditor
-                                :editor="editor"
-                                :config="editorConfig"
-                                v-model="description"
+                                :editor="add.editor"
+                                :config="add.editorConfig"
+                                v-model="add.description"
                             ></ckeditor>
                         </div>
 
@@ -76,7 +75,7 @@
                                 >Location</label
                             >
                             <textarea
-                                v-model="location"
+                                v-model="add.location"
                                 class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 id="facility-location"
                                 name="facility-location"
@@ -93,7 +92,7 @@
                                 >Tags
                             </label>
                             <input
-                                v-model="tags"
+                                v-model="add.tags"
                                 class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 type="text"
                                 id="facility-tags"
@@ -110,7 +109,7 @@
                                 >Availability
                             </label>
                             <input
-                                v-model="availability"
+                                v-model="add.availability"
                                 class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 type="number"
                                 id="facility-availability"
@@ -127,7 +126,7 @@
                                 >Capacity</label
                             >
                             <input
-                                v-model="capacity"
+                                v-model="add.capacity"
                                 class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                                 type="number"
                                 id="facility-capacity"
@@ -147,7 +146,7 @@
                             </router-link>
                             <button
                                 class="text-lg bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
-                                @click.prevent="nextStep(2)"
+                                @click.prevent="add.nextStep(2)"
                             >
                                 Next
                             </button>
@@ -157,8 +156,8 @@
 
                 <!-- Step 2: Add Prices -->
                 <div
-                    v-if="step === 2"
-                    class="bg-gray-100 shadow-gray-400 ml-[350px] p-6 rounded-lg shadow-lg mt-[55px] w-[1000px] relative"
+                    v-if="add.step === 2"
+                    class="bg-gray-100 shadow-gray-400 p-6 rounded-lg shadow-lg mt-[55px] w-[1000px] relative"
                 >
                     <div
                         class="grid grid-cols-1 flex-row border-b-4 border-yellow-400"
@@ -185,7 +184,7 @@
                                 ₱
                             </span>
                             <input
-                                v-model="amount"
+                                v-model="add.amount"
                                 class="pl-8 text-lg w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus-ring-2 focus-ring-green-800"
                                 type="number"
                                 id="amount"
@@ -203,12 +202,12 @@
                             >Month From</label
                         >
                         <select
-                            v-model="monthFrom"
+                            v-model="add.monthFrom"
                             id="month-from"
                             class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus-ring-2 focus-ring-green-800"
                         >
                             <option
-                                v-for="month in months"
+                                v-for="month in add.months"
                                 :value="month.value"
                             >
                                 {{ month.name }}
@@ -224,12 +223,12 @@
                             >Month To</label
                         >
                         <select
-                            v-model="monthTo"
+                            v-model="add.monthTo"
                             id="month-to"
                             class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus-ring-2 focus-ring-green-800"
                         >
                             <option
-                                v-for="month in months"
+                                v-for="month in add.months"
                                 :value="month.value"
                             >
                                 {{ month.name }}
@@ -244,7 +243,7 @@
                             >Hours</label
                         >
                         <input
-                            v-model="hours"
+                            v-model="add.hours"
                             class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus-ring-2 focus-ring-green-800"
                             type="text"
                             id="hours"
@@ -261,7 +260,7 @@
                             >Time Period</label
                         >
                         <select
-                            v-model="timePeriod"
+                            v-model="add.timePeriod"
                             id="time-period"
                             class="w-full text-lg px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-800"
                         >
@@ -273,7 +272,7 @@
 
                     <button
                         class="bg-green-800 text-lg hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
-                        @click.prevent="addPrice"
+                        @click.prevent="add.addPrice"
                     >
                         Add
                     </button>
@@ -319,17 +318,17 @@
                             </thead>
                             <tbody>
                                 <tr
-                                    v-for="(price, index) in prices"
+                                    v-for="(price, index) in add.prices"
                                     :key="index"
                                 >
                                     <td class="py-3 px-6 text-center border-b">
                                         ₱{{ price.amount }}
                                     </td>
                                     <td class="py-3 px-6 text-center border-b">
-                                        {{ getMonthName(price.monthFrom) }}
+                                        {{ add.getMonthName(price.monthFrom) }}
                                     </td>
                                     <td class="py-3 px-6 text-center border-b">
-                                        {{ getMonthName(price.monthTo) }}
+                                        {{ add.getMonthName(price.monthTo) }}
                                     </td>
                                     <td class="py-3 px-6 text-center border-b">
                                         {{ price.hours }}
@@ -340,7 +339,7 @@
                                     <td class="py-3 px-6 text-center border-b">
                                         <button
                                             class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-full focus:outline-none"
-                                            @click="removePrice(index)"
+                                            @click="add.removePrice(index)"
                                         >
                                             Remove
                                         </button>
@@ -353,13 +352,13 @@
                     <div class="flex justify-center mt-5">
                         <button
                             class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-red-500 mr-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
-                            @click.prevent="prevStep(1)"
+                            @click.prevent="add.prevStep(1)"
                         >
                             Go Back
                         </button>
                         <button
                             class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded focus-outline-none focus-ring-2 focus-ring-green-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
-                            @click.prevent="nextStep(3)"
+                            @click.prevent="add.nextStep(3)"
                         >
                             Confirm
                         </button>
@@ -368,8 +367,8 @@
 
                 <!-- Step 3: Confirmation Dialog -->
                 <div
-                    v-if="step === 3"
-                    class="bg-gray-100 shadow-gray-400 ml-[350px] p-6 rounded-lg shadow-lg mt-[50px] w-[1000px] relative"
+                    v-if="add.step === 3"
+                    class="bg-gray-100 shadow-gray-400 p-6 rounded-lg shadow-lg mt-[50px] w-[1000px] relative"
                 >
                     <div
                         class="grid grid-cols-1 flex-row border-b-4 border-yellow-400"
@@ -387,41 +386,41 @@
                         <!-- Set a maximum height and enable overflow scrolling -->
                         <!-- Display confirmation details -->
                         <p class="mt-2">
-                            <strong>Facility Name:</strong> {{ name }}
+                            <strong>Facility Name:</strong> {{ add.name }}
                         </p>
                         <p class="text-justify mt-2">
                             <strong>Short Description:</strong>
-                            <span v-html="shortdes"></span>
+                            <span v-html="add.shortdes"></span>
                         </p>
                         <p class="text-justify mt-2">
                             <strong>Facility Description:</strong>
-                            <span v-html="description"></span>
+                            <span v-html="add.description"></span>
                         </p>
-                        <p class="mt-2"><strong>Tags:</strong> {{ tags }}</p>
+                        <p class="mt-2"><strong>Tags:</strong> {{ add.tags }}</p>
                         <p class="mt-2">
-                            <strong>Facility Location:</strong> {{ location }}
+                            <strong>Facility Location:</strong> {{ add.location }}
                         </p>
                         <p class="mt-2">
-                            <strong>Facility Capacity:</strong> {{ capacity }}
+                            <strong>Facility Capacity:</strong> {{ add.capacity }}
                         </p>
-                        <p class="mt-2"><strong>Prices:</strong>{{ amount }}</p>
+                        <p class="mt-2"><strong>Prices:</strong>{{ add.amount }}</p>
                         <ul class="list-disc pl-4 mb-4">
-                            <li v-for="(price, index) in prices" :key="index">
+                            <li v-for="(price, index) in add.prices" :key="index">
                                 ₱{{ price.amount }} per {{ price.hours }} hours
-                                from {{ getMonthName(price.monthFrom) }} to
-                                {{ getMonthName(price.monthTo) }}
+                                from {{ add.getMonthName(price.monthFrom) }} to
+                                {{ add.getMonthName(price.monthTo) }}
                             </li>
                         </ul>
                     </div>
                     <div class="flex justify-end">
                         <button 
-                            @click="saveData"
+                            @click="add.saveData"
                             class="bg-green-800 text-white px-4 py-2 rounded mr-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
                         >
                             Confirm
                         </button>
                         <button
-                            @click="prevStep(2)"
+                            @click="add.prevStep(2)"
                             class="bg-red-500 text-white px-4 py-2 rounded transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
                         >
                             Cancel
@@ -433,200 +432,10 @@
     </div>
 </template>
 
-<script>
-import axios from "axios";
-import ClassicEditor from "/js/ckeditor_custom";
+<script setup>
+import { addFacilities } from "./ComponentsAdminStore/addFacilityStore.js" 
+const add = addFacilities()
 
-export default {
-    data() {
-        return {
-            editor: ClassicEditor,
-            editorData: "ckeditor 5 for laravel and vuejs",
-            editorConfig: {},
-            step: 1,
-            name: "",
-            shortdes: "",
-            description: "",
-            location: "",
-            tags: "",
-            capacity: "  ",
-            amount: "",
-            monthFrom: "",
-            monthTo: "",
-            hours: "",
-            availability: "",
-            timePeriod: "",
-            prices: [],
-            months: [
-                { value: 1, name: "January" },
-                { value: 2, name: "February" },
-                { value: 3, name: "March" },
-                { value: 4, name: "April" },
-                { value: 5, name: "May" },
-                { value: 6, name: "June" },
-                { value: 7, name: "July" },
-                { value: 8, name: "August" },
-                { value: 9, name: "September" },
-                { value: 10, name: "October" },
-                { value: 11, name: "November" },
-                { value: 12, name: "December" },
-            ],
-            adminId: null,
-        };
-    },
-    methods: {
-        removePrice(index) {
-            this.prices.splice(index, 1);
-        },
-        addPrice() {
-            this.prices.push({
-                amount: this.amount,
-                monthFrom: this.monthFrom,
-                monthTo: this.monthTo,
-                hours: this.hours,
-                timePeriod: this.timePeriod,
-            });
-
-            // Clear the form fields after adding a price
-            this.amount = "";
-            this.monthFrom = "";
-            this.monthTo = "";
-            this.hours = "";
-            this.timePeriod = "";
-        },
-
-        nextStep(step) {
-            this.step = step;
-        },
-
-        prevStep(step) {
-            this.step = step;
-        },
-
-        async fetchLoggedInAdminId() {
-            try {
-                const response = await axios.get("/get-admin-id");
-                return response.data.admin_id;
-            } catch (error) {
-                console.error("Error getting logged-in admin ID:", error);
-                throw error;
-            }
-        },
-
-        async saveData() {
-            try {
-                this.adminId = await this.fetchLoggedInAdminId();
-
-                if (!this.adminId) {
-                    console.error(
-                        "Admin ID not available. Unable to save data."
-                    );
-                    return;
-                }
-
-                const facilityForm = {
-                    admin_id: this.adminId,
-                    name: this.name,
-                    shortdes: this.shortdes,
-                    description: this.description,
-                    location: this.location,
-                    tags: this.tags,
-                    capacity: this.capacity,
-                    hours: this.hours,
-                    timePeriod: this.timePeriod,
-                    availability: this.availability,
-                    prices: this.prices,
-                };
-
-                const response = await axios.post(
-                    "/save-facility",
-                    facilityForm
-                );
-                console.log(
-                    "Facility data successfully uploaded:",
-                    response.data
-                );
-                const facilityId = response.data.id;
-
-                await this.savePrices(facilityId);
-            } catch (error) {
-                console.error("Error uploading facility data:", error);
-            }
-        },
-
-        async savePrices(facilityId) {
-            const pricesData = this.prices.map((price) => ({
-                facility_id: facilityId,
-                amount: price.amount,
-                monthFrom: price.monthFrom,
-                monthTo: price.monthTo,
-                hours: price.hours,
-                timePeriod: price.timePeriod,
-            }));
-
-            try {
-                const response = await axios.post(
-                    "/facility-prices",
-                    pricesData
-                );
-                console.log(
-                    "Prices data successfully uploaded:",
-                    response.data
-                );
-                this.resetForm();
-                this.$router.push("/admin/adminfacilities");
-            } catch (error) {
-                console.error("Error uploading prices data:", error);
-            }
-        },
-
-        resetForm() {
-            this.step = 1;
-            this.name = "";
-            this.shortdes;
-            this.description = "";
-            this.location = "";
-            (this.tags = ""), (this.capacity = 0);
-            this.amount = "";
-            this.monthFrom = "";
-            this.monthTo = "";
-            this.hours = "";
-            (this.timePeriod = ""), (this.prices = []);
-        },
-
-        async mounted() {
-            this.editorData = "";
-            await this.fetchLoggedInAdminId();
-        },
-
-        getMonthName(monthValue) {
-            const months = [
-                "January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "December",
-            ];
-            return months[monthValue - 1];
-        },
-
-        displayEditorResult() {
-            document.getElementById("resultingText").innerHTML =
-                this.editorData;
-        },
-
-        emptyEditor() {
-            this.editorData = "";
-        },
-    },
-};
 </script>
 
 <style>
