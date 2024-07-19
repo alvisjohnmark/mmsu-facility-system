@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 export const addPic = defineStore("addPic", {
     state: () => {
         return {
-            facilityId: '',
+            facilityId: this.$route.params.facilityId
             image_list: [],
             image: {
                 file: null,

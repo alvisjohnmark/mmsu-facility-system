@@ -81,7 +81,7 @@ export default {
         .then(response => {
           console.log('Review submitted successfully', response.data);
           this.clearForm();
-          window.alert('Your review has been posted.');
+          window.alert('Your review has been posted, Thank you!');
         })
         .catch(error => {
           console.error('Error:', error);

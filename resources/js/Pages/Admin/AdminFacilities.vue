@@ -299,7 +299,7 @@
                                             name: 'pic',
                                             params: { facilityId: facility.id },
                                         }"
-                                        class="bg-green-800 hover:bg-green-700 ml-2 mr-2 text-white font-semibold py-2 px-4 rounded router-link transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                        class="bg-yellow-400 hover:bg-green-700 ml-2 mr-2 text-white font-semibold py-2 px-4 rounded router-link transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
                                         active-class="active-link"
                                     >
                                         Pictures

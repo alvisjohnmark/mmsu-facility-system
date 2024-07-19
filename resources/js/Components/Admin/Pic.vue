@@ -195,6 +195,17 @@
                             >
                                 SAVE
                             </button>
+                            <!-- <router-link
+                                to="/admin/adminfacilities"
+                                active-class="active-link"
+                                class="goback"
+                            >
+                                <button
+                                    class="bg-gray-500 text-white px-4 m-8 py-2 rounded mt-4"
+                                >
+                                    Go back
+                                </button>
+                            </router-link> -->
                         </form>
                     </div>
 
@@ -213,7 +224,9 @@
                                     :key="index"
                                     class="border-b border-gray-200"
                                 >
-                                    <td class="py-4 flex justify-center max-w-full h-full">
+                                    <td
+                                        class="py-4 flex justify-center max-w-full h-full"
+                                    >
                                         <img
                                             :src="image.url"
                                             alt="Uploaded Image"
@@ -244,7 +257,6 @@
 </template>
 
 <script>
-
 export default {
     data() {
         return {
@@ -279,7 +291,7 @@ export default {
                 .post("/imageList", { facilityId: this.facilityId })
                 .then((response) => {
                     this.image_list = response.data;
-                    console.log(this.image_list)
+                    console.log(this.image_list);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -342,6 +354,9 @@ export default {
 
 <style scoped>
 /* Your component-specific styles can go here */
+.goback {
+    margin-left: 770px;
+}
 .custom-shadow {
     box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
 }

@@ -1,5 +1,20 @@
 require('./bootstrap');
 
+// Libraries
+
+import { setupCalendar, Calendar, DatePicker } from 'v-calendar';
+import { Bootstrap4Pagination } from 'laravel-vue-pagination';
+import { Bootstrap5Pagination } from 'laravel-vue-pagination';
+import { TailwindPagination } from 'laravel-vue-pagination';
+import { createApp, markRaw } from 'vue/dist/vue.esm-bundler.js';
+import { createRouter, createWebHistory, useRoute } from 'vue-router'
+import { createPinia } from 'pinia';
+import VueSplide from '@splidejs/vue-splide';
+import CKEditor from '@ckeditor/ckeditor5-vue';
+import FullCalendar from '@fullcalendar/vue3';
+
+// Components
+
 import App from './Components/App.vue';
 import Navbar from './Components/Navbar.vue';
 import Footer from './Components/Footer.vue'
@@ -9,16 +24,13 @@ import Addfacilities from './Components/Admin/Addfacilities.vue';
 import Addservices from './Components/Admin/Addservices.vue';
 import EditServices from './Components/Admin/EditServices.vue';
 import ReviewForm from './Components/ReviewForm.vue';
-import { createApp, markRaw } from 'vue/dist/vue.esm-bundler.js';
-import { createRouter, createWebHistory, useRoute } from 'vue-router'
 import router from './router';
-import { createPinia } from 'pinia';
+
+//CSS
+
 import '../css/app.css';
-import VueSplide from '@splidejs/vue-splide';
-import CKEditor from '@ckeditor/ckeditor5-vue';
-import FullCalendar from '@fullcalendar/vue3';
-import { setupCalendar, Calendar, DatePicker } from 'v-calendar';
 import 'v-calendar/style.css';
+
 // pinia js
 
 const pinia = createPinia()

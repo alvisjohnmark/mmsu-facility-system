@@ -152,7 +152,6 @@ const f = facilitiesStore();
 
 onMounted(() => {
     f.getFacilities()
-    // f.fetchData()
 });
 
 </script>

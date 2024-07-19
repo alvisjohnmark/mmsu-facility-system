@@ -290,12 +290,12 @@
         </div>
         <!--Content End-->
         <div>
-            <reservationModal
+            <approvedModal
                 v-if="showModal"
                 :reservation="selectedReservation"
                 @close="closeModal"
             >
-            </reservationModal>
+            </approvedModal>
         </div>
     </div>
 </template>
@@ -313,7 +313,7 @@ import Swal from "sweetalert2";
 export default {
     components: {
         reservationModal,
-        //approvedModal
+        approvedModal
     },
     data() {
         return {

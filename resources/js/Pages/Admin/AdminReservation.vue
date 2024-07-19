@@ -346,7 +346,7 @@
                                                 .reservation_id
                                         )
                                     "
-                                    class="bg-green-800 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                    class="bg-green-800 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-full"
                                 >
                                     Approve
                                 </button>
@@ -357,13 +357,13 @@
                                                 .reservation_id
                                         )
                                     "
-                                    class="bg-red-800 hover:bg-red-700 text-white mt-2 mb-2 font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                    class="bg-red-800 hover:bg-red-700 text-white mt-2 mb-2 font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-full"
                                 >
                                     Decline
                                 </button>
                                 <button
                                     @click="openRescheduleModal(reservation)"
-                                    class="bg-yellow-500 hover:bg-yellow-400 text-white font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
+                                    class="bg-yellow-500 hover:bg-yellow-400 text-white font-semibold py-2 px-4 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-full"
                                 >
                                     Reschedule
                                 </button>

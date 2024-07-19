@@ -16,7 +16,7 @@ class FacilityReviews extends Migration
         Schema::create('facility_reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('facility_id')->constrained('facility')->cascadeOnDelete();
-            $table->string('review_name',255);
+            $table->string('review_name',255)->nullable();
             $table->tinyInteger('rating');
             $table->text('comment');
             $table->timestamps();

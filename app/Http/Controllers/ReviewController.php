@@ -11,7 +11,7 @@ class ReviewController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'name' => 'required',
+            'review_name' => 'required',
             'rating' => 'required|numeric|min:1|max:5',
             'comment' => 'required',
             'facility_id' => 'required|exists:facility,id', // Validate existence of the facility ID in facilities table

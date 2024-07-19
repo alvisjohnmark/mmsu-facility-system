@@ -16,7 +16,7 @@
             <div class="justify-between grid grid-cols-2 gap-4 w-full">
                 <!-- Reservation Details -->
                 <div class="bg-emerald-800 rounded-lg w-full h-full text-white p-2">
-                  <div>Facility: {{reservation.reservation_details.facility_name}}</div>
+                    <div>Facility: {{reservation.reservation_details.facility_name}}</div>
                     <div>Event Name: {{reservation.reservation_details.event_name}}</div>
                     <div>Purpose: {{reservation.reservation_details.purpose}}</div>
                     <div>Participants: {{reservation.reservation_details.participants}}</div>

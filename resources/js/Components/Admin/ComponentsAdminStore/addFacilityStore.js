@@ -154,7 +154,7 @@ export const addFacilities = defineStore("addFacilities", {
         resetForm() {
             this.step = 1;
             this.name = "";
-            this.shortdes;
+            this.shortdes; "";
             this.description = "";
             this.location = "";
             this.availability = "";
