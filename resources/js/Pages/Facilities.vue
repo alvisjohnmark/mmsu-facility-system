@@ -150,7 +150,7 @@ import { facilitiesStore } from "./PageStores/facilitiesStore.js";
 import { onMounted } from "vue";
 const f = facilitiesStore();
 
-onMounted(() => {
+onMounted(() => {clear
     f.getFacilities()
 });
 
